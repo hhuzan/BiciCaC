@@ -19,4 +19,6 @@ Para evitar el error de CORS, en modo development, el acceso a la api se hace me
 
 En producción se debería deployar un server que haga de gateway a la api.
 
+---
+
 ![Pantalla de  Login](images/screen.png)
