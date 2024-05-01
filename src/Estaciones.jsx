@@ -8,6 +8,7 @@ const Estaciones = () => {
   const [isLoading, setLoading] = useState(true);
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
+  const [selected, setSelected] = useState();
 
   useEffect(() => {
     getStations();
@@ -47,6 +48,8 @@ const Estaciones = () => {
                 seleccionados={seleccion.seleccionados}
                 setLat={setLat}
                 setLon={setLon}
+                selected={selected}
+                setSelected={setSelected}
               />
             );
           })}

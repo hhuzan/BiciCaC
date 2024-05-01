@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 
-const Estacion = ({ station, seleccionados, setLat, setLon }) => {
+const Estacion = ({
+  station,
+  seleccionados,
+  setLat,
+  setLon,
+  selected,
+  setSelected,
+}) => {
   const [seleccionado, setSeleccionado] = useState(
     seleccionados.includes(Number(station.station_id))
   );
@@ -14,10 +21,13 @@ const Estacion = ({ station, seleccionados, setLat, setLon }) => {
   const handleLocation = () => {
     setLat(station.lat);
     setLon(station.lon);
+    setSelected(station.station_id);
   };
 
+  let clase =
+    station.station_id == selected ? "estacion_seleccionada" : "estacion";
   return (
-    <div className="estacion">
+    <div className={clase}>
       <div className="estacion_etiqueta">
         <div className="estacion_name">{station.name}</div>
         <div className="estacion_address">
