@@ -14,6 +14,14 @@ const Estaciones = () => {
     getStations();
   }, []);
 
+  useEffect(() => {
+    if (stations.length != []) {
+      setSelected(stations.data.stations[0].station_id);
+      setLat(stations.data.stations[0].lat);
+      setLon(stations.data.stations[0].lon);
+    }
+  }, [stations]);
+
   const getStations = async () => {
     const url = "stationInformation?";
     try {
