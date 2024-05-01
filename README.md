@@ -7,7 +7,7 @@
 
 ---
 
-### Por ahora tiene una sola página que consulta y muestra el listado de Estaciones.
+### Por ahora tiene una sola página que consulta a la api de CABA y muestra el listado de Estaciones.
 
 ---
 
