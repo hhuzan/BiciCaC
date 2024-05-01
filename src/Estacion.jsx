@@ -28,12 +28,12 @@ const Estacion = ({
     station.station_id == selected ? "estacion_seleccionada" : "estacion";
   return (
     <div className={clase}>
-      <div className="estacion_etiqueta">
+      <div className="estacion_etiqueta" onClick={handleLocation}>
         <div className="estacion_name">{station.name}</div>
         <div className="estacion_address">
           {station.address}
           <div className="estacion_icon">
-            <FaLocationDot onClick={handleLocation} />
+            <FaLocationDot />
           </div>
         </div>
       </div>
