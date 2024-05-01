@@ -18,3 +18,5 @@ Los ids de las Estaciones Seleccionadas están hardcodeados en un json. Debería
 Para evitar el error de CORS, en modo development, el acceso a la api se hace mediante un PROXY configurado en `vite.config.js`
 
 En producción se debería deployar un server que haga de gateway a la api.
+
+![Pantalla de  Login](images/screen.png)
