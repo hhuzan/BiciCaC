@@ -5,18 +5,29 @@
   text-align: center;
 }
 
+.estaciones {
+  display: flex;
+  gap: 20px;
+}
+
 .estacion {
   border-width: 1px 0 0 0;
   border-color: gray;
   border-style: solid;
   display: grid;
-  grid-template-columns: 10fr 12fr 1fr;
+  grid-template-columns: 12fr 1fr;
   padding: 4px;
+}
+
+.estacion_etiqueta {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 .estacion_name {
   font-weight: bold;
-  justify-self: start;
+  /* justify-self: start; */
 }
 
 .estacion_address {
@@ -28,4 +39,9 @@
 .estacion_icon {
   display: flex;
   align-items: center;
+}
+
+.mapa {
+  position: sticky;
+  top: 0;
 }

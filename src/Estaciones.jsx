@@ -1,10 +1,13 @@
 import Estacion from "./Estacion";
+import Mapa from "./Mapa";
 import { useState, useEffect } from "react";
 import seleccion from "./seleccion.json";
 
 const Estaciones = () => {
   const [stations, setStations] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [lat, setLat] = useState();
+  const [lon, setLon] = useState();
 
   useEffect(() => {
     getStations();
@@ -34,15 +37,22 @@ const Estaciones = () => {
   ) : (
     <>
       <h1>Estaciones</h1>
-      {stations.data.stations.map((station) => {
-        return (
-          <Estacion
-            key={station.station_id}
-            station={station}
-            seleccionados={seleccion.seleccionados}
-          />
-        );
-      })}
+      <div className="estaciones">
+        <div>
+          {stations.data.stations.map((station) => {
+            return (
+              <Estacion
+                key={station.station_id}
+                station={station}
+                seleccionados={seleccion.seleccionados}
+                setLat={setLat}
+                setLon={setLon}
+              />
+            );
+          })}
+        </div>
+        <Mapa lat={lat} lon={lon} />
+      </div>
     </>
   );
 };
