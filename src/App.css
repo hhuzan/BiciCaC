@@ -69,3 +69,14 @@ header {
   position: sticky;
   top: 0;
 }
+
+.tarjetero {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.tarjeta {
+  background-color: black;
+  padding: 20px;
+}

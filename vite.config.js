@@ -26,6 +26,11 @@ export default defineConfig({
         //   });
         // },
       },
+      "/stationStatus": {
+        target: "https://apitransporte.buenosaires.gob.ar/ecobici/gbfs",
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
