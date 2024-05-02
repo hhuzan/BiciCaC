@@ -5,6 +5,19 @@
   text-align: center;
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: space-between;
+  font-size: xx-large;
+}
+
+.linea {
+  display: flex;
+  flex-direction: row;
+}
+
 .estaciones {
   display: flex;
   gap: 20px;

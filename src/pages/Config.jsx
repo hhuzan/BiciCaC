@@ -1,9 +1,11 @@
-import Estacion from "./Estacion";
-import Mapa from "./Mapa";
+import Estacion from "../components/Estacion";
+import Mapa from "../components/Mapa";
+import getStations from "../utils/getStations";
 import { useState, useEffect } from "react";
-import seleccion from "./seleccion.json";
+import seleccion from "../seleccion.json";
+import { MdHome, MdLogout } from "react-icons/md";
 
-const Estaciones = () => {
+const Config = () => {
   const [stations, setStations] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [lat, setLat] = useState();
@@ -11,7 +13,7 @@ const Estaciones = () => {
   const [selected, setSelected] = useState();
 
   useEffect(() => {
-    getStations();
+    getStations(setStations, setLoading);
   }, []);
 
   useEffect(() => {
@@ -22,30 +24,19 @@ const Estaciones = () => {
     }
   }, [stations]);
 
-  const getStations = async () => {
-    const url = "stationInformation?";
-    try {
-      const response = await fetch(
-        url +
-          new URLSearchParams({
-            client_id: import.meta.env.VITE_CLIENT_ID,
-            client_secret: import.meta.env.VITE_CLIENT_SECRET,
-          })
-      );
-      const data = await response.json();
-      setStations(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return isLoading ? (
     <h1>Cargando...</h1>
   ) : (
     <>
-      <h1>Estaciones</h1>
+      <header>
+        <a href="/state">
+          <MdHome />
+        </a>
+        <a href="/">
+          <MdLogout />
+        </a>
+      </header>
+      <h1>Configuración</h1>
       <div className="estaciones">
         <div>
           {stations.data.stations.map((station) => {
@@ -68,4 +59,4 @@ const Estaciones = () => {
   );
 };
 
-export default Estaciones;
+export default Config;
