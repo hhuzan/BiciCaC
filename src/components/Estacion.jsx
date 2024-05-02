@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 
-export const Estacion = ({ station, seleccionados, setLat, setLon, selected, setSelected }) => {
-	const [seleccionado, setSeleccionado] = useState(seleccionados.includes(Number(station.station_id)));
+export const Estacion = ({ station, favorites, setLat, setLon, selected, setSelected }) => {
+	const [favorite, setFavorite] = useState(favorites.includes(Number(station.station_id)));
+
+	useEffect(() => {
+		if (favorites.length) {
+			setFavorite(favorites.includes(Number(station.station_id)));
+		}
+	}, [favorites]);
 
 	const handleSeleccion = () => {
 		setSeleccionado(!seleccionado);
@@ -27,7 +33,7 @@ export const Estacion = ({ station, seleccionados, setLat, setLon, selected, set
 					</div>
 				</div>
 			</div>
-			<input type="checkbox" onChange={handleSeleccion} checked={seleccionado} />
+			<input type="checkbox" onChange={handleSeleccion} checked={favorite} />
 		</div>
 	);
 };

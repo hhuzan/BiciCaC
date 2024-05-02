@@ -4,7 +4,7 @@ import { getStatus } from "../utils/getStatus";
 import { Tarjeta } from "../components/Tarjeta";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
 import seleccion from "../seleccion.json";
-import {appFirebase} from "../utils/conexionAPIFirebase";
+import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
@@ -21,7 +21,7 @@ export const State = ({ usuario }) => {
 	}, []);
 
 	useEffect(() => {
-		if (stations.length != [] && status.length != []) {
+		if (stations.length && status.length) {
 			// Armar diccionarios aca
 		}
 	}, [stations, status]);
