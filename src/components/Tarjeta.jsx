@@ -2,7 +2,7 @@ import { Mapa } from "./Mapa";
 import { GrBike } from "react-icons/gr";
 import { PiLockersBold } from "react-icons/pi";
 
-export const Tarjeta = ({ seleccionado, stations, status }) => {
+export const Tarjeta = ({ favorite, stations, status }) => {
 	let num_bikes_available;
 	let total_anclajes;
 	let num_docks_available;
@@ -11,7 +11,7 @@ export const Tarjeta = ({ seleccionado, stations, status }) => {
 	let lon;
 
 	stations.forEach((s) => {
-		if (s.station_id == seleccionado) {
+		if (s.station_id == favorite) {
 			name = s.name;
 			lat = s.lat;
 			lon = s.lon;
@@ -19,7 +19,7 @@ export const Tarjeta = ({ seleccionado, stations, status }) => {
 	});
 
 	status.forEach((s) => {
-		if (s.station_id == seleccionado) {
+		if (s.station_id == favorite) {
 			num_bikes_available = s.num_bikes_available;
 			total_anclajes = s.num_bikes_available + s.num_docks_available + s.num_bikes_disabled + s.num_docks_disabled;
 			num_docks_available = s.num_docks_available;

@@ -1,8 +1,8 @@
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "./conexionAPIFirebase";
 
-export const getSeleccionados = async (id, setSelected) => {
-	const docRef = doc(db, "estacionesSeleccionadas", "sZw7ScXUMSWkV7w5kwkdmmsLLkG2");
+export const getFavorites = async (id, setSelected) => {
+	const docRef = doc(db, "estacionesSeleccionadas", id);
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.exists()) {

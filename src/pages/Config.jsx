@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { MdHome, MdLogout } from "react-icons/md";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
-import { getSeleccionados } from "../utils/getSeleccionados";
+import { getFavorites } from "../utils/getFavorites";
 
 const auth = getAuth(appFirebase);
 
@@ -19,7 +19,7 @@ export const Config = ({ usuario }) => {
 
 	useEffect(() => {
 		getStations(setStations, setLoading);
-		getSeleccionados(usuario.uid, setFavorites);
+		getFavorites(usuario.uid, setFavorites);
 	}, []);
 
 	useEffect(() => {
