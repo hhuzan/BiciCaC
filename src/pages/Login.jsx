@@ -1,32 +1,19 @@
-import { useState } from 'react'
 import appFirebase from '../utils/conexionAPIFirebase'
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 
 const auth = getAuth(appFirebase)
 
 export const Login = ()=>{
 
-    const [registrando, setRegistrando] = useState (false)
-
     const functAutenticacion= async(e) =>{
         e.preventDefault();
         const correo = e.target.email.value;
         const constraseña = e.target.password.value;
-        if (registrando) {
-            try { 	
-                await createUserWithEmailAndPassword(auth, correo, constraseña)
-            } 
-            catch (error) {
-                alert ("Asegurece que la contraseña tenga más de 8 caracteres")
-            }
-        }	
-        else { 
-            try {
-                await signInWithEmailAndPassword(auth, correo, constraseña)
-            } 
-            catch (error) {
-                alert ("El correo o la contraseña son incorrectos")
-            }
+        try {
+            await signInWithEmailAndPassword(auth, correo, constraseña)
+        } 
+        catch (error) {
+            alert ("El correo o la contraseña son incorrectos")
         }
     }
 

@@ -25,10 +25,9 @@ function App() {
       setUsuario(null);
     }
   });
-  //<div>{usuario ? <State correoUsuario={usuario.email} uidUsuario={usuario.uid} /> : <Login />}</div>
+  // <div><Create /></div>
   return (
-    <div><Create /></div>
-
+    <div>{usuario ? <State correoUsuario={usuario.email} uidUsuario={usuario.uid} /> : <Login />}</div>
  /* Todas las rutas deberían ir a Login si el usurio aun no está logeado!!! */
     /*
   <BrowserRouter>
