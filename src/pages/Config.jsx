@@ -39,7 +39,7 @@ export const Config = ({ usuario }) => {
         {usuario.email}
         <MdLogout onClick={() => signOut(auth)} />
       </header>
-      <h1>Configuración</h1>
+      <h1>Estaciones Favoritas</h1>
       <div className="estaciones">
         <div>
           {stations.data.stations.map((station) => {
@@ -56,7 +56,7 @@ export const Config = ({ usuario }) => {
             );
           })}
         </div>
-        <Mapa lat={lat} lon={lon} />
+        <Mapa lat={lat} lon={lon} height={400} width={600} />
       </div>
     </>
   );

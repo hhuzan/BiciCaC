@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+*,
+*::before,
+*::after {
+  margin: 2px;
+  /* box-sizing: border-box; */
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -77,6 +84,8 @@ header {
 }
 
 .tarjeta {
+  display: flex;
+  flex-direction: column;
   background-color: black;
-  padding: 20px;
+  padding: 0;
 }

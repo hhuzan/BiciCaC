@@ -20,6 +20,12 @@ export const State = ({ usuario }) => {
     getStatus(setStatus, setLoading2);
   }, []);
 
+  useEffect(() => {
+    if (stations.length != [] && status.length != []) {
+      // Armar diccionarios aca
+    }
+  }, [stations, status]);
+
   return isLoading1 || isLoading2 ? (
     <h1>Cargando...</h1>
   ) : (
