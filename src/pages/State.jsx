@@ -4,7 +4,13 @@ import Tarjeta from "../components/Tarjeta";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
 import seleccion from "../seleccion.json";
 
-const State = () => {
+import React from "react";
+import appFirebase from "../utils/conexionAPIFirebase";
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth(appFirebase);
+
+export const State = ({ correoUsuario, uidUsuario }) => {
   const [status, setStatus] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -16,6 +22,12 @@ const State = () => {
     <h1>Cargando...</h1>
   ) : (
     <>
+      <div>
+        <h2>
+          bienvenido usuario {correoUsuario}{" "}{uidUsuario}{" "}
+          <button onClick={() => signOut(auth)}>Logout</button>
+        </h2>
+      </div>
       <header>
         <a href="/config">
           <MdOutlineSettings />
