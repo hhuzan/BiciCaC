@@ -87,5 +87,33 @@ header {
 	display: flex;
 	flex-direction: column;
 	background-color: black;
-	padding: 0;
+	padding: 4px;
+}
+
+.tarjeta_name {
+	font-weight: bold;
+}
+
+.rojo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: red;
+}
+
+.amarillo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: yellow;
+}
+
+.verde {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: #00ff00;
 }

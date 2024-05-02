@@ -37,7 +37,6 @@ export const State = ({ usuario }) => {
 				{usuario.email}
 				<MdLogout onClick={() => signOut(auth)} />
 			</header>
-			<h1>Estados</h1>
 			<div className="tarjetero">
 				{seleccion.seleccionados.map((seleccionado) => {
 					return (
