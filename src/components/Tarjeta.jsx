@@ -1,22 +1,32 @@
-export const Tarjeta = ({ station, seleccionados }) => {
+export const Tarjeta = ({ seleccionado, stations, status }) => {
+  let num_bikes_available;
   let total_anclajes;
-  if (seleccionados.includes(Number(station.station_id))) {
-    total_anclajes =
-      station.num_bikes_available +
-      station.num_docks_available +
-      station.num_bikes_disabled +
-      station.num_docks_disabled;
-    return (
-      <div className="tarjeta">
-        <h2>{"Id: " + station.station_id}</h2>
-        <h3>{"Bicis Disp: " + station.num_bikes_available}</h3>
-        <h3>
-          {"Anclajes Disp: " +
-            station.num_docks_available +
-            "/" +
-            total_anclajes}
-        </h3>
-      </div>
-    );
-  }
+  let num_docks_available;
+  let name;
+
+  stations.forEach((s) => {
+    if (s.station_id == seleccionado) {
+      name = s.name;
+    }
+  });
+
+  status.forEach((s) => {
+    if (s.station_id == seleccionado) {
+      num_bikes_available = s.num_bikes_available;
+      total_anclajes =
+        s.num_bikes_available +
+        s.num_docks_available +
+        s.num_bikes_disabled +
+        s.num_docks_disabled;
+      num_docks_available = s.num_docks_available;
+    }
+  });
+
+  return (
+    <div className="tarjeta">
+      <h2>{name}</h2>
+      <h3>{"Bicis Disp: " + num_bikes_available}</h3>
+      <h3>{"Anclajes Disp: " + num_docks_available + "/" + total_anclajes}</h3>
+    </div>
+  );
 };

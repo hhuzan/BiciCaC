@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getStations } from "../utils/getStations";
 import { getStatus } from "../utils/getStatus";
 import { Tarjeta } from "../components/Tarjeta";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
@@ -9,14 +10,17 @@ import { getAuth, signOut } from "firebase/auth";
 const auth = getAuth(appFirebase);
 
 export const State = ({ usuario }) => {
+  const [stations, setStations] = useState([]);
   const [status, setStatus] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading1, setLoading1] = useState(true);
+  const [isLoading2, setLoading2] = useState(true);
 
   useEffect(() => {
-    getStatus(setStatus, setLoading);
+    getStations(setStations, setLoading1);
+    getStatus(setStatus, setLoading2);
   }, []);
 
-  return isLoading ? (
+  return isLoading1 || isLoading2 ? (
     <h1>Cargando...</h1>
   ) : (
     <>
@@ -29,12 +33,13 @@ export const State = ({ usuario }) => {
       </header>
       <h1>Estados</h1>
       <div className="tarjetero">
-        {status.data.stations.map((station) => {
+        {seleccion.seleccionados.map((seleccionado) => {
           return (
             <Tarjeta
-              key={station.station_id}
-              station={station}
-              seleccionados={seleccion.seleccionados}
+              key={seleccionado}
+              seleccionado={seleccionado}
+              stations={stations.data.stations}
+              status={status.data.stations}
             />
           );
         })}
