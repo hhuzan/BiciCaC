@@ -5,7 +5,7 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 	const [favorite, setFavorite] = useState(favorites.includes(Number(station.station_id)));
 
 	useEffect(() => {
-		if (favorites.length) {
+		if (favorites.length != 0) {
 			setFavorite(favorites.includes(Number(station.station_id)));
 		}
 	}, [favorites]);

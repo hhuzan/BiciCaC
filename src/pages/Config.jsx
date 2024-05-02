@@ -2,7 +2,6 @@ import { Estacion } from "../components/Estacion";
 import { Mapa } from "../components/Mapa";
 import { getStations } from "../utils/getStations";
 import { useState, useEffect } from "react";
-/*import seleccion from "../seleccion.json";*/
 import { MdHome, MdLogout } from "react-icons/md";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
@@ -24,7 +23,7 @@ export const Config = ({ usuario }) => {
 	}, []);
 
 	useEffect(() => {
-		if (stations.length) {
+		if (stations.length != 0) {
 			setSelected(stations.data.stations[0].station_id);
 			setLat(stations.data.stations[0].lat);
 			setLon(stations.data.stations[0].lon);

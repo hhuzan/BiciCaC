@@ -21,7 +21,7 @@ export const State = ({ usuario }) => {
 	}, []);
 
 	useEffect(() => {
-		if (stations.length && status.length) {
+		if (stations.length != 0 && status.length != 0) {
 			// Armar diccionarios aca
 		}
 	}, [stations, status]);
