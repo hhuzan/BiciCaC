@@ -1,4 +1,4 @@
-import appFirebase from "../utils/conexionAPIFirebase";
+import {appFirebase} from "../utils/conexionAPIFirebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
