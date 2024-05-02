@@ -1,4 +1,4 @@
-const Mapa = ({ lat, lon }) => {
+export const Mapa = ({ lat, lon }) => {
   const url = lat
     ? "https://google.com/maps/?q=" + lat + "," + lon + "&output=embed"
     : "";
@@ -12,5 +12,3 @@ const Mapa = ({ lat, lon }) => {
     ></iframe>
   );
 };
-
-export default Mapa;

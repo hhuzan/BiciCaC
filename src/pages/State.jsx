@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import getStatus from "../utils/getStatus";
-import Tarjeta from "../components/Tarjeta";
+import { getStatus } from "../utils/getStatus";
+import { Tarjeta } from "../components/Tarjeta";
 import { MdOutlineSettings, MdLogout } from "react-icons/md";
 import seleccion from "../seleccion.json";
-
-import React from "react";
 import appFirebase from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
 
-export const State = ({ correoUsuario, uidUsuario }) => {
+export const State = ({ usuario }) => {
   const [status, setStatus] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -22,19 +20,12 @@ export const State = ({ correoUsuario, uidUsuario }) => {
     <h1>Cargando...</h1>
   ) : (
     <>
-      <div>
-        <h2>
-          bienvenido usuario {correoUsuario}{" "}{uidUsuario}{" "}
-          <button onClick={() => signOut(auth)}>Logout</button>
-        </h2>
-      </div>
       <header>
         <a href="/config">
           <MdOutlineSettings />
         </a>
-        <a href="/">
-          <MdLogout />
-        </a>
+        {usuario.email}
+        <MdLogout onClick={() => signOut(auth)} />
       </header>
       <h1>Estados</h1>
       <div className="tarjetero">
@@ -51,5 +42,3 @@ export const State = ({ correoUsuario, uidUsuario }) => {
     </>
   );
 };
-
-export default State;

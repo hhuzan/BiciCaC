@@ -1,4 +1,4 @@
-const Tarjeta = ({ station, seleccionados }) => {
+export const Tarjeta = ({ station, seleccionados }) => {
   let total_anclajes;
   if (seleccionados.includes(Number(station.station_id))) {
     total_anclajes =
@@ -20,5 +20,3 @@ const Tarjeta = ({ station, seleccionados }) => {
     );
   }
 };
-
-export default Tarjeta;

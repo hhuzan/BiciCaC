@@ -1,11 +1,11 @@
-import Estacion from "../components/Estacion";
-import Mapa from "../components/Mapa";
-import getStations from "../utils/getStations";
+import { Estacion } from "../components/Estacion";
+import { Mapa } from "../components/Mapa";
+import { getStations } from "../utils/getStations";
 import { useState, useEffect } from "react";
 import seleccion from "../seleccion.json";
 import { MdHome, MdLogout } from "react-icons/md";
 
-const Config = () => {
+export const Config = ({ usuario }) => {
   const [stations, setStations] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [lat, setLat] = useState();
@@ -32,9 +32,8 @@ const Config = () => {
         <a href="/state">
           <MdHome />
         </a>
-        <a href="/">
-          <MdLogout />
-        </a>
+        {usuario.email}
+        <MdLogout onClick={() => signOut(auth)} />
       </header>
       <h1>Configuración</h1>
       <div className="estaciones">
@@ -58,5 +57,3 @@ const Config = () => {
     </>
   );
 };
-
-export default Config;

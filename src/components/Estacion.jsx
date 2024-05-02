@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 
-const Estacion = ({
+export const Estacion = ({
   station,
   seleccionados,
   setLat,
@@ -45,5 +45,3 @@ const Estacion = ({
     </div>
   );
 };
-
-export default Estacion;

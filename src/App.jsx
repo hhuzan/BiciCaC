@@ -1,45 +1,41 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
-//importando los modulos de firebase
 import appFirebase from "./utils/conexionAPIFirebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Login } from "./pages/Login";
+import { State } from "./pages/State";
+import { Config } from "./pages/Config";
+import { Create } from "./pages/Create";
 
 const auth = getAuth(appFirebase);
 
-//importar nuestro componentes
-import { Login } from "./pages/Login";
-import Register from "./pages/Register";
-import { State } from "./pages/State";
-import Config from "./pages/Config";
-import {Create} from "./pages/Create";
-
-function App() {
+const App = () => {
   const [usuario, setUsuario] = useState(null);
 
   onAuthStateChanged(auth, (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      setUsuario(usuarioFirebase);
-    } else {
-      setUsuario(null);
-    }
+    usuarioFirebase ? setUsuario(usuarioFirebase) : setUsuario(null);
   });
-  // <div><Create /></div>
-  return (
-    <div>{usuario ? <State correoUsuario={usuario.email} uidUsuario={usuario.uid} /> : <Login />}</div>
- /* Todas las rutas deberían ir a Login si el usurio aun no está logeado!!! */
-    /*
-  <BrowserRouter>
+
+  return usuario ? (
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/state" element={<State />} />
-        <Route path="/config" element={<Config />} />
+        <Route path="/" element={<State usuario={usuario} />} />
+        <Route path="/create" element={<Login />} />
+        <Route path="/state" element={<State usuario={usuario} />} />
+        <Route path="/config" element={<Config usuario={usuario} />} />
+        <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>
     </BrowserRouter>
-*/    
+  ) : (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="*" element={<p>Path not resolved</p>} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

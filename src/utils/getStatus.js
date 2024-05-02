@@ -1,4 +1,4 @@
-const getStatus = async (setStatus, setLoading) => {
+export const getStatus = async (setStatus, setLoading) => {
   const url = "stationStatus?";
   try {
     const response = await fetch(
@@ -16,5 +16,3 @@ const getStatus = async (setStatus, setLoading) => {
     setLoading(false);
   }
 };
-
-export default getStatus;
