@@ -21,7 +21,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<State usuario={usuario} />} />
-        <Route path="/create" element={<Login />} />
+        <Route path="/create" element={<State usuario={usuario} />} />
         <Route path="/state" element={<State usuario={usuario} />} />
         <Route path="/config" element={<Config usuario={usuario} />} />
         <Route path="*" element={<p>Path not resolved</p>} />
@@ -30,9 +30,8 @@ const App = () => {
   ) : (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
         <Route path="/create" element={<Create />} />
-        <Route path="*" element={<p>Path not resolved</p>} />
+        <Route path="*" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

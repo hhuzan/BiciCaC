@@ -4,6 +4,10 @@ import { getStations } from "../utils/getStations";
 import { useState, useEffect } from "react";
 import seleccion from "../seleccion.json";
 import { MdHome, MdLogout } from "react-icons/md";
+import appFirebase from "../utils/conexionAPIFirebase";
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth(appFirebase);
 
 export const Config = ({ usuario }) => {
   const [stations, setStations] = useState([]);
