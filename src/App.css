@@ -1,91 +1,119 @@
 #root {
-  /* max-width: 1280px; */
-  margin: 0 auto;
-  /* padding: 2rem; */
-  text-align: center;
+	/* max-width: 1280px; */
+	margin: 0 auto;
+	/* padding: 2rem; */
+	text-align: center;
 }
 
 *,
 *::before,
 *::after {
-  margin: 2px;
-  /* box-sizing: border-box; */
+	margin: 2px;
+	/* box-sizing: border-box; */
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  justify-content: space-between;
-  font-size: xx-large;
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+	justify-content: space-between;
+	font-size: xx-large;
 }
 
 .linea {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .estaciones {
-  display: flex;
-  gap: 20px;
+	display: flex;
+	gap: 20px;
 }
 
 .estacion {
-  border-width: 1px 0 0 0;
-  border-color: gray;
-  border-style: solid;
-  display: grid;
-  grid-template-columns: 12fr 1fr;
-  padding: 4px;
+	border-width: 1px 0 0 0;
+	border-color: gray;
+	border-style: solid;
+	display: grid;
+	grid-template-columns: 12fr 1fr;
+	padding: 4px;
 }
 
 .estacion_seleccionada {
-  background-color: black;
-  border-width: 1px 0 0 0;
-  border-color: gray;
-  border-style: solid;
-  display: grid;
-  grid-template-columns: 12fr 1fr;
-  padding: 4px;
+	background-color: black;
+	border-width: 1px 0 0 0;
+	border-color: gray;
+	border-style: solid;
+	display: grid;
+	grid-template-columns: 12fr 1fr;
+	padding: 4px;
 }
 
 .estacion_etiqueta {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	cursor: pointer;
 }
 
 .estacion_name {
-  font-weight: bold;
-  /* justify-self: start; */
+	font-weight: bold;
+	/* justify-self: start; */
 }
 
 .estacion_address {
-  display: flex;
-  color: crimson;
-  gap: 10px;
+	display: flex;
+	color: crimson;
+	gap: 10px;
 }
 
 .estacion_icon {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .mapa {
-  position: sticky;
-  top: 0;
+	position: sticky;
+	top: 0;
 }
 
 .tarjetero {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px;
 }
 
 .tarjeta {
-  display: flex;
-  flex-direction: column;
-  background-color: black;
-  padding: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+	padding: 4px;
+}
+
+.tarjeta_name {
+	font-weight: bold;
+}
+
+.rojo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: red;
+}
+
+.amarillo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: yellow;
+}
+
+.verde {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	color: #00ff00;
 }
