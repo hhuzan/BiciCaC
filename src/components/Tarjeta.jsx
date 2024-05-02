@@ -40,15 +40,15 @@ export const Tarjeta = ({ seleccionado, stations, status }) => {
 		<div className="tarjeta">
 			<div className="tarjeta_header">
 				<p className="tarjeta_name">{name}</p>
-				<p className={color_bicis}>
+				<div className={color_bicis}>
 					<GrBike />
 					<p>{num_bikes_available}</p>
-				</p>
+				</div>
 
-				<p className={color_anclaje}>
+				<div className={color_anclaje}>
 					<PiLockersBold />
 					<p>{num_docks_available + "/" + total_anclajes}</p>
-				</p>
+				</div>
 			</div>
 			<Mapa lat={lat} lon={lon} height={200} width={300} />
 		</div>
