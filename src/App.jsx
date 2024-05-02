@@ -11,30 +11,30 @@ import { Create } from "./pages/Create";
 const auth = getAuth(appFirebase);
 
 const App = () => {
-  const [usuario, setUsuario] = useState(null);
+	const [usuario, setUsuario] = useState(null);
 
-  onAuthStateChanged(auth, (usuarioFirebase) => {
-    setUsuario(usuarioFirebase);
-  });
+	onAuthStateChanged(auth, (usuarioFirebase) => {
+		setUsuario(usuarioFirebase);
+	});
 
-  return usuario ? (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<State usuario={usuario} />} />
-        <Route path="/create" element={<State usuario={usuario} />} />
-        <Route path="/state" element={<State usuario={usuario} />} />
-        <Route path="/config" element={<Config usuario={usuario} />} />
-        <Route path="*" element={<p>Path not resolved</p>} />
-      </Routes>
-    </BrowserRouter>
-  ) : (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/create" element={<Create />} />
-        <Route path="*" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
+	return usuario ? (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<State usuario={usuario} />} />
+				<Route path="/create" element={<State usuario={usuario} />} />
+				<Route path="/state" element={<State usuario={usuario} />} />
+				<Route path="/config" element={<Config usuario={usuario} />} />
+				<Route path="*" element={<p>Path not resolved</p>} />
+			</Routes>
+		</BrowserRouter>
+	) : (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/create" element={<Create />} />
+				<Route path="*" element={<Login />} />
+			</Routes>
+		</BrowserRouter>
+	);
 };
 
 export default App;

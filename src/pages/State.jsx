@@ -10,46 +10,46 @@ import { getAuth, signOut } from "firebase/auth";
 const auth = getAuth(appFirebase);
 
 export const State = ({ usuario }) => {
-  const [stations, setStations] = useState([]);
-  const [status, setStatus] = useState([]);
-  const [isLoading1, setLoading1] = useState(true);
-  const [isLoading2, setLoading2] = useState(true);
+	const [stations, setStations] = useState([]);
+	const [status, setStatus] = useState([]);
+	const [isLoading1, setLoading1] = useState(true);
+	const [isLoading2, setLoading2] = useState(true);
 
-  useEffect(() => {
-    getStations(setStations, setLoading1);
-    getStatus(setStatus, setLoading2);
-  }, []);
+	useEffect(() => {
+		getStations(setStations, setLoading1);
+		getStatus(setStatus, setLoading2);
+	}, []);
 
-  useEffect(() => {
-    if (stations.length != [] && status.length != []) {
-      // Armar diccionarios aca
-    }
-  }, [stations, status]);
+	useEffect(() => {
+		if (stations.length != [] && status.length != []) {
+			// Armar diccionarios aca
+		}
+	}, [stations, status]);
 
-  return isLoading1 || isLoading2 ? (
-    <h1>Cargando...</h1>
-  ) : (
-    <>
-      <header>
-        <a href="/config">
-          <MdOutlineSettings />
-        </a>
-        {usuario.email}
-        <MdLogout onClick={() => signOut(auth)} />
-      </header>
-      <h1>Estados</h1>
-      <div className="tarjetero">
-        {seleccion.seleccionados.map((seleccionado) => {
-          return (
-            <Tarjeta
-              key={seleccionado}
-              seleccionado={seleccionado}
-              stations={stations.data.stations}
-              status={status.data.stations}
-            />
-          );
-        })}
-      </div>
-    </>
-  );
+	return isLoading1 || isLoading2 ? (
+		<h1>Cargando...</h1>
+	) : (
+		<>
+			<header>
+				<a href="/config">
+					<MdOutlineSettings />
+				</a>
+				{usuario.email}
+				<MdLogout onClick={() => signOut(auth)} />
+			</header>
+			<h1>Estados</h1>
+			<div className="tarjetero">
+				{seleccion.seleccionados.map((seleccionado) => {
+					return (
+						<Tarjeta
+							key={seleccionado}
+							seleccionado={seleccionado}
+							stations={stations.data.stations}
+							status={status.data.stations}
+						/>
+					);
+				})}
+			</div>
+		</>
+	);
 };
