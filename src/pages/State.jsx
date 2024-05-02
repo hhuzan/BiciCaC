@@ -7,7 +7,7 @@ const State = () => {
         <a href="/config">
           <MdOutlineSettings />
         </a>
-        <a href="/login">
+        <a href="/">
           <MdLogout />
         </a>
       </header>
