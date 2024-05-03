@@ -6,6 +6,7 @@ import { MdHome, MdLogout } from "react-icons/md";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
 import { getFavorites } from "../utils/getFavorites";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const auth = getAuth(appFirebase);
 
@@ -31,7 +32,7 @@ export const Config = ({ usuario }) => {
 	}, [stations]);
 
 	return isLoading ? (
-		<h1>Cargando...</h1>
+		<CircularProgress />
 	) : (
 		<>
 			<header>
