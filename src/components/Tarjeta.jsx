@@ -38,7 +38,7 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	else color_bicis = "green";
 	let color_anclaje;
 
-	if (num_docks_available < 1) color_anclaje = "rojo";
+	if (num_docks_available < 1) color_anclaje = "red";
 	else if (num_docks_available < 4) color_anclaje = "yellow";
 	else color_anclaje = "green";
 
