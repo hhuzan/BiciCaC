@@ -10,12 +10,12 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 		}
 	}, [favorites]);
 
-	const handleSeleccion = () => {
-		setSeleccionado(!seleccionado);
+	const handleFavorite = () => {
+		setFavorite(!favorite);
 		alert("Implementar llamado a Backend");
 	};
 
-	const handleLocation = () => {
+	const handleSelected = () => {
 		setLat(station.lat);
 		setLon(station.lon);
 		setSelected(station.station_id);
@@ -24,7 +24,7 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 	let clase = station.station_id == selected ? "estacion_seleccionada" : "estacion";
 	return (
 		<div className={clase}>
-			<div className="estacion_etiqueta" onClick={handleLocation}>
+			<div className="estacion_etiqueta" onClick={handleSelected}>
 				<div className="estacion_name">{station.name}</div>
 				<div className="estacion_address">
 					{station.address}
@@ -33,7 +33,7 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 					</div>
 				</div>
 			</div>
-			<input type="checkbox" onChange={handleSeleccion} checked={favorite} />
+			<input type="checkbox" onChange={handleFavorite} checked={favorite} />
 		</div>
 	);
 };
