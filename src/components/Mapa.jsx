@@ -9,7 +9,6 @@ export const Mapa = ({ lat, lon, height, width }) => {
 			src={url}
 			height={height}
 			width={width}
-			title="Iframe Example"
-		></iframe>
+		/>
 	);
 };

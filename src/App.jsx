@@ -40,7 +40,7 @@ const App = () => {
 		</ThemeProvider>
 	) : (
 		<ThemeProvider theme={darkTheme}>
-			<CssBaseline />{" "}
+			<CssBaseline />
 			<BrowserRouter>
 				<Routes>
 					<Route path="/create" element={<Create />} />
