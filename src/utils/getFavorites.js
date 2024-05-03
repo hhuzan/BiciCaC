@@ -6,8 +6,8 @@ export const getFavorites = async (id, setFavorites) => {
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.exists()) {
-		const estaciones = await docSnap.data().estaciones;
-		setFavorites(estaciones);
+		const dataEstaciones = await docSnap.data().estaciones;
+		setFavorites(dataEstaciones);
 	} else {
 		console.log("No such document!");
 	}
