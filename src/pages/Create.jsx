@@ -1,4 +1,4 @@
-import {appFirebase} from "../utils/conexionAPIFirebase";
+import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
@@ -25,7 +25,7 @@ export const Create = () => {
 					<input type="text" name="email" id="email" placeholder="johndoe@email.com" />
 				</div>
 				<div>
-					<label>Contrase&ntilde;a:</label>
+					<label>Contraseña:</label>
 					<input type="password" name="password" id="password" placeholder="********" />
 				</div>
 				<div>

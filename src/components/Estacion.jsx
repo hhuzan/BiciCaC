@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { FaLocationDot } from "react-icons/fa6";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import PlaceIcon from "@mui/icons-material/Place";
+import Checkbox from "@mui/material/Checkbox";
+import Divider from "@mui/material/Divider";
 
 export const Estacion = ({ station, favorites, setLat, setLon, selected, setSelected }) => {
 	const [favorite, setFavorite] = useState(favorites.includes(Number(station.station_id)));
@@ -21,19 +27,17 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 		setSelected(station.station_id);
 	};
 
-	let clase = station.station_id == selected ? "estacion_seleccionada" : "estacion";
 	return (
-		<div className={clase}>
-			<div className="estacion_etiqueta" onClick={handleSelected}>
-				<div className="estacion_name">{station.name.substring(6)}</div>
-				<div className="estacion_address">
-					{station.address}
-					<div className="estacion_icon">
-						<FaLocationDot />
-					</div>
-				</div>
-			</div>
-			<input type="checkbox" onChange={handleFavorite} checked={favorite} />
-		</div>
+		<>
+			<ListItem secondaryAction={<Checkbox edge="end" onChange={handleFavorite} checked={favorite} />}>
+				<ListItemButton selected={station.station_id == selected} onClick={handleSelected}>
+					<ListItemIcon>
+						<PlaceIcon />
+					</ListItemIcon>
+					<ListItemText primary={station.name.substring(6)} secondary={station.address} />
+				</ListItemButton>
+			</ListItem>
+			<Divider variant="middle" component="li" />
+		</>
 	);
 };

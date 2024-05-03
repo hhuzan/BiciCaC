@@ -1,6 +1,10 @@
 import { Mapa } from "./Mapa";
-import { GrBike } from "react-icons/gr";
-import { PiLockersBold } from "react-icons/pi";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import PedalBikeIcon from "@mui/icons-material/PedalBike";
+import DoorSlidingIcon from "@mui/icons-material/DoorSliding";
 
 export const Tarjeta = ({ favorite, stations, status }) => {
 	let num_bikes_available;
@@ -29,31 +33,35 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	});
 
 	let color_bicis;
-	if (num_bikes_available < 1) color_bicis = "rojo";
-	else if (num_bikes_available < 4) color_bicis = "amarillo";
-	else color_bicis = "verde";
+	if (num_bikes_available < 1) color_bicis = "red";
+	else if (num_bikes_available < 4) color_bicis = "yellow";
+	else color_bicis = "green";
 	let color_anclaje;
 
 	if (num_docks_available < 1) color_anclaje = "rojo";
-	else if (num_docks_available < 4) color_anclaje = "amarillo";
-	else color_anclaje = "verde";
+	else if (num_docks_available < 4) color_anclaje = "yellow";
+	else color_anclaje = "green";
 
 	return (
-		<div className="tarjeta">
-			<div className="tarjeta_header">
-				<p className="tarjeta_name">{name.substring(6)}</p>
-				<p>{address}</p>
-				<div className={color_bicis}>
-					<GrBike />
-					<p>{num_bikes_available}</p>
-				</div>
-
-				<div className={color_anclaje}>
-					<PiLockersBold />
-					<p>{num_docks_available + "/" + total_anclajes}</p>
-				</div>
-			</div>
+		<Card variant="outlined">
+			<CardHeader title={name.substring(6)} subheader={address} />
+			<CardContent>
+				<Typography
+					color={color_bicis}
+					sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}
+				>
+					<PedalBikeIcon />
+					{num_bikes_available}
+				</Typography>
+				<Typography
+					color={color_anclaje}
+					sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}
+				>
+					<DoorSlidingIcon />
+					{num_docks_available + "/" + total_anclajes}
+				</Typography>
+			</CardContent>
 			<Mapa lat={lat} lon={lon} height={200} width={300} />
-		</div>
+		</Card>
 	);
 };

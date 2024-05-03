@@ -2,11 +2,18 @@ import { Estacion } from "../components/Estacion";
 import { Mapa } from "../components/Mapa";
 import { getStations } from "../utils/getStations";
 import { useState, useEffect } from "react";
-import { MdHome, MdLogout } from "react-icons/md";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
 import { getFavorites } from "../utils/getFavorites";
 import CircularProgress from "@mui/material/CircularProgress";
+import List from "@mui/material/List";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import AppBar from "@mui/material/AppBar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const auth = getAuth(appFirebase);
 
@@ -31,20 +38,32 @@ export const Config = ({ usuario }) => {
 		}
 	}, [stations]);
 
-	return isLoading ? (
-		<CircularProgress />
-	) : (
-		<>
-			<header>
-				<a href="/state">
-					<MdHome />
-				</a>
-				{usuario.email}
-				<MdLogout onClick={() => signOut(auth)} />
-			</header>
-			<h1>Estaciones Favoritas</h1>
-			<div className="estaciones">
-				<div>
+	const Header = () => {
+		return (
+			<AppBar
+				position="sticky"
+				sx={{ display: "flex", flexFlow: "row", justifyContent: "space-between", alignItems: "center" }}
+			>
+				<IconButton size="large" href="/state">
+					<HomeIcon />
+				</IconButton>
+				<Typography variant="h3">Estaciones Favoritas</Typography>
+				<Typography variant="h6">{usuario.email}</Typography>
+				<IconButton size="large" onClick={() => signOut(auth)}>
+					<LogoutIcon />
+				</IconButton>
+			</AppBar>
+		);
+	};
+
+	const Body = () => {
+		return isLoading ? (
+			<Box sx={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+				<CircularProgress />
+			</Box>
+		) : (
+			<Box sx={{ display: "flex" }}>
+				<List>
 					{stations.data.stations.map((station) => {
 						return (
 							<Estacion
@@ -58,9 +77,16 @@ export const Config = ({ usuario }) => {
 							/>
 						);
 					})}
-				</div>
+				</List>
 				<Mapa lat={lat} lon={lon} height={400} width={600} />
-			</div>
-		</>
+			</Box>
+		);
+	};
+
+	return (
+		<Container>
+			<Header />
+			<Body />
+		</Container>
 	);
 };
