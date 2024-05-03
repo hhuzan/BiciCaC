@@ -7,12 +7,14 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	let total_anclajes;
 	let num_docks_available;
 	let name;
+	let address;
 	let lat;
 	let lon;
 
 	stations.forEach((s) => {
 		if (s.station_id == favorite) {
 			name = s.name;
+			address = s.address;
 			lat = s.lat;
 			lon = s.lon;
 		}
@@ -39,7 +41,8 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	return (
 		<div className="tarjeta">
 			<div className="tarjeta_header">
-				<p className="tarjeta_name">{name}</p>
+				<p className="tarjeta_name">{name.substring(6)}</p>
+				<p>{address}</p>
 				<div className={color_bicis}>
 					<GrBike />
 					<p>{num_bikes_available}</p>

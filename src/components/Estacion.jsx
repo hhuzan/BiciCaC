@@ -25,7 +25,7 @@ export const Estacion = ({ station, favorites, setLat, setLon, selected, setSele
 	return (
 		<div className={clase}>
 			<div className="estacion_etiqueta" onClick={handleSelected}>
-				<div className="estacion_name">{station.name}</div>
+				<div className="estacion_name">{station.name.substring(6)}</div>
 				<div className="estacion_address">
 					{station.address}
 					<div className="estacion_icon">

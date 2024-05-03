@@ -20,6 +20,9 @@ export const State = ({ usuario }) => {
 		getStations(setStations, setLoading1);
 		getStatus(setStatus, setLoading2);
 		getFavorites(usuario.uid, setFavorites);
+		let timer = setInterval(() => {
+			getStatus(setStatus, setLoading2);
+		}, 20000);
 	}, []);
 
 	useEffect(() => {
