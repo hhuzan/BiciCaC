@@ -1,17 +1,13 @@
 # Bici Cac
 
-- Copiar el archivo `.env` a `env.local`
-- Agregar las keys en el archivo `env.local`
-- `npm install`
-- `npm run dev`
+-   Copiar el archivo `.env` a `env.local`
+-   Agregar las keys en el archivo `env.local`
+-   `npm install`
+-   `npm run dev`
 
 ---
 
-### Por ahora tiene una sola página que consulta a la api de CABA y muestra el listado de Estaciones.
-
----
-
-Los ids de las Estaciones Seleccionadas están hardcodeados en un json. Debería consultarlo/modificarlo en el backend según el usuario logeado.
+El cambio de modo Dark/Default se hace en `App.jsx` (`darkMode = true`)
 
 ---
 
@@ -21,4 +17,6 @@ En producción se debería deployar un server que haga de gateway a la api.
 
 ---
 
-![Pantalla de  Login](images/screen.png)
+![Pantalla de  Login](images/1.png)
+![Pantalla Principal](images/2.png)
+![Pantalla de  Lonfiguración](images/3.png)

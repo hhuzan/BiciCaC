@@ -8,22 +8,17 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { State } from "./pages/State";
-
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 const darkMode = true;
-const darkTheme = createTheme({
+const theme = createTheme({
 	palette: {
 		mode: darkMode ? "dark" : "light",
 	},
 });
 
 const auth = getAuth(appFirebase);
-
-/*
-<Route path="/create" element={<State usuario={usuario} />} />
-*/
 
 const App = () => {
 	const [usuario, setUsuario] = useState(null);
@@ -33,7 +28,7 @@ const App = () => {
 	});
 
 	return usuario ? (
-		<ThemeProvider theme={darkTheme}>
+		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<BrowserRouter>
 				<Routes>
@@ -46,7 +41,7 @@ const App = () => {
 			</BrowserRouter>
 		</ThemeProvider>
 	) : (
-		<ThemeProvider theme={darkTheme}>
+		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<BrowserRouter>
 				<Routes>
