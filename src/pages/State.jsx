@@ -47,6 +47,9 @@ export const State = ({ usuario }) => {
 				<IconButton size="large" href="/config">
 					<SettingsIcon />
 				</IconButton>
+				<IconButton size="large" href="/change-password">
+					<SettingsIcon />
+				</IconButton>				
 				<Typography variant="h3">Bici CaC</Typography>
 				<Typography variant="h6">{usuario.email}</Typography>
 				<IconButton size="large" onClick={() => signOut(auth)}>

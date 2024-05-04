@@ -1,10 +1,10 @@
-import {appFirebase} from "../utils/conexionAPIFirebase";
+import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
 
 export const Login = () => {
-	const functAutenticacion = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const correo = e.target.email.value;
 		const constraseña = e.target.password.value;
@@ -18,19 +18,20 @@ export const Login = () => {
 	return (
 		<>
 			<h2>INGRESAR A MI CUENTA</h2>
-			<form onSubmit={functAutenticacion}>
+			<form onSubmit={handleSubmit}>
 				<div>
 					<label>Email:</label>
-					<input type="text" name="email" id="email" placeholder="johndoe@email.com" />
+					<input type="email" name="email" id="email" required placeholder="johndoe@email.com" />
 				</div>
 				<div>
 					<label>Contraseña:</label>
-					<input type="password" name="password" id="password" placeholder="*******" />
+					<input type="password" name="password" id="password" required placeholder="*******" />
 				</div>
 				<div>
 					<input type="submit" value="Ingresar" />
 				</div>
 				<a href="/create">Registrarse</a>
+                <a href="/forgot-password">Olvid&eacute; mi contrase&ntilde;a</a>
 			</form>
 		</>
 	);

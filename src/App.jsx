@@ -2,10 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { appFirebase } from "./utils/conexionAPIFirebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Login } from "./pages/Login";
-import { State } from "./pages/State";
 import { Config } from "./pages/Config";
-import { Create } from "./pages/Create";
+import { ChangePassword } from "./pages/ChangePassword";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { SignIn } from "./pages/SignIn";
+import { SignUp } from "./pages/SignUp";
+import { State } from "./pages/State";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -17,6 +20,10 @@ const darkTheme = createTheme({
 });
 
 const auth = getAuth(appFirebase);
+
+/*
+<Route path="/create" element={<State usuario={usuario} />} />
+*/
 
 const App = () => {
 	const [usuario, setUsuario] = useState(null);
@@ -31,9 +38,9 @@ const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<State usuario={usuario} />} />
-					<Route path="/create" element={<State usuario={usuario} />} />
 					<Route path="/state" element={<State usuario={usuario} />} />
 					<Route path="/config" element={<Config usuario={usuario} />} />
+					<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
 					<Route path="*" element={<p>Path not resolved</p>} />
 				</Routes>
 			</BrowserRouter>
@@ -43,8 +50,9 @@ const App = () => {
 			<CssBaseline />
 			<BrowserRouter>
 				<Routes>
-					<Route path="/create" element={<Create />} />
-					<Route path="*" element={<Login />} />
+					<Route path="/signUp" element={<SignUp />} />
+					<Route path="/forgot-password" element={<ForgotPassword />} />
+					<Route path="*" element={<SignIn />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>
