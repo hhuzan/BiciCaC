@@ -1,21 +1,11 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import React from "react";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
 
 const auth = getAuth(appFirebase);
-
-const defaultTheme = createTheme();
 
 export const SignUp = () => {
 	const handleSubmit = async (event) => {

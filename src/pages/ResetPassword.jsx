@@ -1,47 +1,17 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, confirmPasswordReset } from "firebase/auth";
-
-const defaultFormFields = {
-	password: "",
-	confirmPassword: "",
-};
+import { Copyright } from "../components/CopyRight";
 
 const auth = getAuth(appFirebase);
-
-const defaultTheme = createTheme();
-
-function Copyright(props) {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center" {...props}>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
 
 export const ResetPassword = ({ usuario }) => {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const [successMessage, setSuccessMessage] = useState(false);
-	//  const [formFields, setFormFields] = useState(defaultFormFields)
 
 	let oobCode = searchParams.get("oobCode");
 	alert(oobCode);
@@ -75,9 +45,7 @@ export const ResetPassword = ({ usuario }) => {
 					<button onClick={() => navigate("/")}>Ir a la página de inicio de sesión</button>
 				</div>
 			) : (
-				// <ThemeProvider theme={defaultTheme}>
 				<Container component="main" maxWidth="xs">
-					{/* <CssBaseline /> */}
 					<Box
 						sx={{
 							marginTop: 8,
@@ -139,7 +107,6 @@ export const ResetPassword = ({ usuario }) => {
 					</Box>
 					<Copyright sx={{ mt: 5 }} />
 				</Container>
-				// </ThemeProvider>
 			)}
 		</div>
 	);

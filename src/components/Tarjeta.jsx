@@ -1,8 +1,5 @@
 import { Mapa } from "./Mapa";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Card, CardHeader, CardContent, Typography } from "@mui/material";
 import PedalBikeIcon from "@mui/icons-material/PedalBike";
 import DoorSlidingIcon from "@mui/icons-material/DoorSliding";
 

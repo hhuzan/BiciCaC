@@ -5,13 +5,7 @@ import { useState, useEffect } from "react";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
 import { getFavorites } from "../utils/getFavorites";
-import CircularProgress from "@mui/material/CircularProgress";
-import List from "@mui/material/List";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import AppBar from "@mui/material/AppBar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+import { Container, IconButton, AppBar, Box, Typography, CircularProgress, List } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 
