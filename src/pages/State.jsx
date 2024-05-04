@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PasswordIcon from "@mui/icons-material/Password";
 
 const auth = getAuth(appFirebase);
 
@@ -44,14 +45,14 @@ export const State = ({ usuario }) => {
 				position="sticky"
 				sx={{ display: "flex", flexFlow: "row", justifyContent: "space-between", alignItems: "center" }}
 			>
+				<Typography variant="h3">Bici CaC</Typography>
+				<Typography variant="h6">{usuario.email}</Typography>
 				<IconButton size="large" href="/config">
 					<SettingsIcon />
 				</IconButton>
 				<IconButton size="large" href="/change-password">
-					<SettingsIcon />
-				</IconButton>				
-				<Typography variant="h3">Bici CaC</Typography>
-				<Typography variant="h6">{usuario.email}</Typography>
+					<PasswordIcon />
+				</IconButton>
 				<IconButton size="large" onClick={() => signOut(auth)}>
 					<LogoutIcon />
 				</IconButton>
