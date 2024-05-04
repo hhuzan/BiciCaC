@@ -27,28 +27,29 @@ const App = () => {
 		setUsuario(usuarioFirebase);
 	});
 
-	return usuario ? (
+	const MyRoutes = () => {
+		return usuario ? (
+			<Routes>
+				<Route path="/" element={<State usuario={usuario} />} />
+				<Route path="/state" element={<State usuario={usuario} />} />
+				<Route path="/config" element={<Config usuario={usuario} />} />
+				<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
+				<Route path="*" element={<p>Path not resolved</p>} />
+			</Routes>
+		) : (
+			<Routes>
+				<Route path="/signUp" element={<SignUp />} />
+				<Route path="/forgot-password" element={<ForgotPassword />} />
+				<Route path="*" element={<SignIn />} />
+			</Routes>
+		);
+	};
+
+	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<State usuario={usuario} />} />
-					<Route path="/state" element={<State usuario={usuario} />} />
-					<Route path="/config" element={<Config usuario={usuario} />} />
-					<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
-					<Route path="*" element={<p>Path not resolved</p>} />
-				</Routes>
-			</BrowserRouter>
-		</ThemeProvider>
-	) : (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<BrowserRouter>
-				<Routes>
-					<Route path="/signUp" element={<SignUp />} />
-					<Route path="/forgot-password" element={<ForgotPassword />} />
-					<Route path="*" element={<SignIn />} />
-				</Routes>
+				<MyRoutes />
 			</BrowserRouter>
 		</ThemeProvider>
 	);
