@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
 import { ListItem, ListItemText, ListItemButton, ListItemIcon, Checkbox, Divider } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
+import { putFavorites } from "../utils/putFavorites";
 
-export const Estacion = ({ station, favorites, setLat, setLon, selected, setSelected }) => {
-	const [favorite, setFavorite] = useState(favorites.includes(Number(station.station_id)));
+export const Estacion = ({ station, usuario, favorites, setLat, setLon, selected, setSelected }) => {
+	const [favorite, setFavorite] = useState(favorites.includes(station.station_id));
 
 	useEffect(() => {
 		if (favorites.length != 0) {
-			setFavorite(favorites.includes(Number(station.station_id)));
+			setFavorite(favorites.includes(station.station_id));
 		}
 	}, [favorites]);
 
 	const handleFavorite = () => {
+		let estaba;
+		for (let i = 0; i < favorites.length; i++) {
+			if (favorites[i] === station.station_id) {
+				favorites.splice(i, 1);
+				estaba = true;
+			}
+		}
+		if (!estaba) {
+			favorites.push(station.station_id);
+		}
+		const doc = {};
+		doc["estaciones"] = favorites;
+		putFavorites(usuario.uid, doc);
 		setFavorite(!favorite);
-		alert("Implementar llamado a Backend");
 	};
 
 	const handleSelected = () => {

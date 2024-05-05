@@ -38,6 +38,7 @@ export const Config = ({ usuario }) => {
 						<Estacion
 							key={station.station_id}
 							station={station}
+							usuario={usuario}
 							favorites={favorites}
 							setLat={setLat}
 							setLon={setLon}
