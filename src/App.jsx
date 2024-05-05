@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { appFirebase } from "./utils/conexionAPIFirebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Config } from "./components/Config";
 import { ChangePassword } from "./pages/ChangePassword";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { SignIn } from "./pages/SignIn";
