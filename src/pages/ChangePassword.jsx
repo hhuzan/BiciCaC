@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, updatePassword } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
+import manejoErrores from "../utils/manejoErrores";
 
 const auth = getAuth(appFirebase);
 
@@ -21,15 +22,17 @@ export const ChangePassword = ({ usuario }) => {
 			return;
 		}
 
+		if ((data.get("password")).length < 8 ) {
+			alert("El largo de la contraseña debe ser mayor o igual a 8 caracteres.");
+			return;
+		}
+		
 		try {
 			await updatePassword(auth.currentUser, data.get("password"));
 			setSuccessMessage(true);
 		} catch (error) {
-			alert(error);
-			alert(error.message);
-			if (error.code === "auth/invalid-action-code") {
-				alert("Algo estuvo mal. Probar nuevamente.");
-			}
+			const descripcionError = manejoErrores(error.code,error.message);
+			alert(descripcionError);
 		}
 	};
 

@@ -4,6 +4,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
+import manejoErrores from "../utils/manejoErrores";
+import validarCorreoElectronico from "../utils/validarCorreoElectronico";
 
 const auth = getAuth(appFirebase);
 
@@ -11,10 +13,22 @@ export const SignUp = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
+				
+		if (! validarCorreoElectronico(data.get("email"))) {
+			alert("No es una dirreción de correo válida.");
+			return;
+		}
+
+		if ((data.get("password")).length < 8 ) {
+			alert("El largo de la contraseña debe ser mayor o igual a 8 caracteres.");
+			return;
+		}
+
 		try {
 			await createUserWithEmailAndPassword(auth, data.get("email"), data.get("password"));
 		} catch (error) {
-			alert("Asegurece que la contraseña tenga más de 8 caracteres");
+			const descripcionError = manejoErrores(error.code,error.message);
+			alert(descripcionError);
 		}
 	};
 

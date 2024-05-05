@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
+import manejoErrores from "../utils/manejoErrores";
+import validarCorreoElectronico from "../utils/validarCorreoElectronico";
 
 const auth = getAuth(appFirebase);
 
@@ -15,15 +17,20 @@ export const ForgotPassword = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
+		
+		if (! validarCorreoElectronico(data.get("email"))) {
+			alert("No es una dirreción de correo válida.");
+			return;
+		}
+
 		try {
 			await sendPasswordResetEmail(auth, data.get("email"));
 			setEmailMessage(true);
 		} catch (error) {
-			if (error.code === "auth/user-not-found") {
-				alert("El usuario no existe");
-			}
-		}
-	};
+			const descripcionError = manejoErrores(error.code,error.message);
+			alert(descripcionError);
+		};
+	}	
 
 	return emailMessage ? (
 		<>
@@ -55,6 +62,13 @@ export const ForgotPassword = () => {
 					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 						Solicitar
 					</Button>
+					<Grid container justifyContent="flex-end">
+						<Grid item>
+							<Link href="/SignIn" variant="body2">
+								Remember the password? Sign in
+							</Link>
+						</Grid>
+					</Grid>
 				</Box>
 			</Box>
 			<Copyright sx={{ mt: 5 }} />
