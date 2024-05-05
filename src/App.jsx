@@ -31,6 +31,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Dashboard pagina="Status" usuario={usuario} />} />
 				<Route path="/config" element={<Dashboard pagina="Config" usuario={usuario} />} />
+				<Route path="/signUp" element={<Dashboard pagina="Status" usuario={usuario} />} />
 				<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
 				<Route path="*" element={<p>Path not resolved</p>} />
 			</Routes>
