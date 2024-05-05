@@ -18,7 +18,7 @@ export const Status = ({ usuario }) => {
 		getFavorites(usuario.uid, setFavorites);
 		let timer = setInterval(() => {
 			getStatus(setStatus, setLoading2);
-		}, 60000);
+		}, 20000);
 	}, []);
 
 	useEffect(() => {
