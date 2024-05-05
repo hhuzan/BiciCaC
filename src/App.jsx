@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { appFirebase } from "./utils/conexionAPIFirebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Config } from "./pages/Config";
+import { Config } from "./components/Config";
 import { ChangePassword } from "./pages/ChangePassword";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
-import { State } from "./pages/State";
+import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -30,9 +30,8 @@ const App = () => {
 	const MyRoutes = () => {
 		return usuario ? (
 			<Routes>
-				<Route path="/" element={<State usuario={usuario} />} />
-				<Route path="/state" element={<State usuario={usuario} />} />
-				<Route path="/config" element={<Config usuario={usuario} />} />
+				<Route path="/" element={<Dashboard pagina="Status" usuario={usuario} />} />
+				<Route path="/config" element={<Dashboard pagina="Config" usuario={usuario} />} />
 				<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
 				<Route path="*" element={<p>Path not resolved</p>} />
 			</Routes>

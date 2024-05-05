@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
@@ -100,6 +100,13 @@ export const ChangePassword = ({ usuario }) => {
 					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 						Solicitar
 					</Button>
+					<Grid container justifyContent="flex-end">
+						<Grid item>
+							<Link href="/" variant="body2">
+								Return Dashboard
+							</Link>
+						</Grid>
+					</Grid>					
 				</Box>
 			</Box>
 			<Copyright sx={{ mt: 5 }} />
