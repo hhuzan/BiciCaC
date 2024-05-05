@@ -1,64 +1,14 @@
-import { useState, useEffect } from "react";
-import { getStations } from "../utils/getStations";
-import { getStatus } from "../utils/getStatus";
-import { Tarjeta } from "../components/Tarjeta";
-import { getFavorites } from "../utils/getFavorites";
-import { Box, Typography, Container, CircularProgress, IconButton } from "@mui/material";
-
-import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { Box, Typography, Container, IconButton, Toolbar, List, Divider, Grid, styled } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { mainListItems, secondaryListItems } from "../components/listItems";
+import { Status } from "../components/Status";
+import { Config } from "../components/Config";
 
-export const State = ({ usuario }) => {
-	const [stations, setStations] = useState([]);
-	const [status, setStatus] = useState([]);
-	const [favorites, setFavorites] = useState([]);
-	const [isLoading1, setLoading1] = useState(true);
-	const [isLoading2, setLoading2] = useState(true);
-
-	useEffect(() => {
-		getStations(setStations, setLoading1);
-		getStatus(setStatus, setLoading2);
-		getFavorites(usuario.uid, setFavorites);
-		let timer = setInterval(() => {
-			getStatus(setStatus, setLoading2);
-		}, 60000);
-	}, []);
-
-	useEffect(() => {
-		if (stations.length != 0 && status.length != 0) {
-			// Armar diccionarios aca
-		}
-	}, [stations, status]);
-
-	const Body = () => {
-		return isLoading1 || isLoading2 ? (
-			<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<CircularProgress />
-			</Box>
-		) : (
-			<Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "32px", padding: "32px" }}>
-				{favorites.map((favorite) => {
-					return (
-						<Tarjeta
-							key={favorite}
-							favorite={favorite}
-							stations={stations.data.stations}
-							status={status.data.stations}
-						/>
-					);
-				})}
-			</Box>
-		);
-	};
-
+export const Dashboard = ({ usuario, pagina }) => {
 	const drawerWidth = 240;
 	const AppBar = styled(MuiAppBar, {
 		shouldForwardProp: (prop) => prop !== "open",
@@ -128,7 +78,7 @@ export const State = ({ usuario }) => {
 						<MenuIcon />
 					</IconButton>
 					<Typography component="h1" variant="h4" color="inherit" noWrap sx={{ flexGrow: 3 }}>
-						Status
+						{pagina}
 					</Typography>
 					{/* <IconButton color="inherit">
 						<Badge badgeContent={4} color="secondary">
@@ -173,7 +123,8 @@ export const State = ({ usuario }) => {
 				<Toolbar />
 				<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
 					<Grid container spacing={3}>
-						<Body />
+						{pagina == "Status" && <Status usuario={usuario} />}
+						{pagina == "Config" && <Config usuario={usuario} />}
 					</Grid>
 				</Container>
 			</Box>

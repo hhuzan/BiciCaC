@@ -13,7 +13,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 export const mainListItems = (
 	<React.Fragment>
-		<ListItemButton>
+		<ListItemButton href="/">
 			<ListItemIcon>
 				<DashboardIcon />
 			</ListItemIcon>
