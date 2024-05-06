@@ -41,7 +41,19 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 
 	return (
 		<Card variant="outlined">
-			<CardHeader title={name.substring(6)} subheader={address} />
+			<CardHeader
+				sx={{
+					display: "flex",
+					overflow: "hidden",
+					"& .MuiCardHeader-content": {
+						overflow: "hidden",
+					},
+				}}
+				title={name.substring(6)}
+				titleTypographyProps={{ noWrap: true }}
+				subheader={address}
+				subheaderTypographyProps={{ noWrap: true }}
+			/>
 			<CardContent>
 				<Typography
 					color={color_bicis}
