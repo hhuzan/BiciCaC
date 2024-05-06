@@ -3,7 +3,7 @@ import { getStations } from "../utils/getStations";
 import { getStatus } from "../utils/getStatus";
 import { getFavorites } from "../utils/getFavorites";
 import { Tarjeta } from "./Tarjeta";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
 
 export const Status = ({ usuario }) => {
 	const [stations, setStations] = useState([]);
@@ -32,7 +32,7 @@ export const Status = ({ usuario }) => {
 			<CircularProgress />
 		</Box>
 	) : (
-		<Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "32px", padding: "32px" }}>
+		<Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", rowGap: "24px" }}>
 			{favorites.map((favorite) => {
 				return (
 					<Tarjeta key={favorite} favorite={favorite} stations={stations.data.stations} status={status.data.stations} />

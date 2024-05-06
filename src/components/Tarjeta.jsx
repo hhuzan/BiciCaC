@@ -40,7 +40,7 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	else color_anclaje = "green";
 
 	return (
-		<Card variant="outlined">
+		<Card variant="outlined" sx={{ maxWidth: 300 }}>
 			<CardHeader
 				sx={{
 					display: "flex",

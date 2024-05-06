@@ -122,10 +122,10 @@ export const Dashboard = ({ usuario, pagina }) => {
 			>
 				<Toolbar />
 				<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-					<Grid container spacing={3}>
-						{pagina == "Status" && <Status usuario={usuario} />}
-						{pagina == "Config" && <Config usuario={usuario} />}
-					</Grid>
+					{/* <Grid container spacing={3}> */}
+					{pagina == "Status" && <Status usuario={usuario} />}
+					{pagina == "Config" && <Config usuario={usuario} />}
+					{/* </Grid> */}
 				</Container>
 			</Box>
 		</Box>
