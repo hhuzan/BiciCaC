@@ -17,7 +17,7 @@ export const Status = ({ usuario }) => {
 		fetchStatus(setStatus, setLoading2);
 		getFavorites(usuario.uid, setFavorites);
 		let timer = setInterval(() => {
-			getStatus(setStatus, setLoading2);
+			fetchStatus(setStatus, setLoading2);
 		}, 20000);
 	}, []);
 

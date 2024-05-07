@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Box, Typography, Container, IconButton, Toolbar, List, Divider, styled } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Container, IconButton, Toolbar, List, Divider, styled, Switch, useTheme } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -8,8 +8,11 @@ import { MainListItems } from "../components/listItems";
 import { Status } from "../components/Status";
 import { Config } from "../components/Config";
 import { Copyright } from "../components/CopyRight";
+import { MUIWrapperContext } from "../components/MUIWrapper";
 
 export const Dashboard = ({ usuario, pagina }) => {
+	const theme = useTheme();
+	const muiUtils = React.useContext(MUIWrapperContext);
 	const drawerWidth = 240;
 	const AppBar = styled(MuiAppBar, {
 		shouldForwardProp: (prop) => prop !== "open",
@@ -81,14 +84,10 @@ export const Dashboard = ({ usuario, pagina }) => {
 					<Typography component="h1" variant="h4" color="inherit" noWrap sx={{ flexGrow: 3 }}>
 						{pagina}
 					</Typography>
-					{/* <IconButton color="inherit">
-						<Badge badgeContent={4} color="secondary">
-							<NotificationsIcon />
-						</Badge>
-					</IconButton> */}
 					<Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
 						{usuario.email}
 					</Typography>
+					<Switch checked={theme.palette.mode === "dark"} onChange={muiUtils.toggleColorMode} />
 				</Toolbar>
 			</AppBar>
 			<Drawer variant="permanent" open={open}>

@@ -8,14 +8,15 @@ import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Dashboard } from "./pages/Dashboard";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { MUIWrapper } from "./components/MUIWrapper";
 import CssBaseline from "@mui/material/CssBaseline";
 
-const darkMode = true;
-const theme = createTheme({
-	palette: {
-		mode: darkMode ? "dark" : "light",
-	},
-});
+// const darkMode = true;
+// const theme = createTheme({
+// 	palette: {
+// 		mode: darkMode ? "dark" : "light",
+// 	},
+// });
 
 const auth = getAuth(appFirebase);
 
@@ -45,12 +46,12 @@ const App = () => {
 	});
 
 	return (
-		<ThemeProvider theme={theme}>
+		<MUIWrapper>
 			<CssBaseline />
 			<BrowserRouter>
 				<MyRoutes isLogin={Boolean(usuario)} usuario={usuario} />
 			</BrowserRouter>
-		</ThemeProvider>
+		</MUIWrapper>
 	);
 };
 
