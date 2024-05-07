@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Typography, Container, IconButton, Toolbar, List, Divider, Grid, styled } from "@mui/material";
+import { Box, Typography, Container, IconButton, Toolbar, List, Divider, styled } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -7,6 +7,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { MainListItems } from "../components/listItems";
 import { Status } from "../components/Status";
 import { Config } from "../components/Config";
+import { Copyright } from "../components/CopyRight";
 
 export const Dashboard = ({ usuario, pagina }) => {
 	const drawerWidth = 240;
@@ -122,10 +123,9 @@ export const Dashboard = ({ usuario, pagina }) => {
 			>
 				<Toolbar />
 				<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-					{/* <Grid container spacing={3}> */}
 					{pagina == "Status" && <Status usuario={usuario} />}
 					{pagina == "Config" && <Config usuario={usuario} />}
-					{/* </Grid> */}
+					<Copyright sx={{ pt: 4 }} />
 				</Container>
 			</Box>
 		</Box>

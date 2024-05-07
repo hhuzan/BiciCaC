@@ -1,6 +1,6 @@
 import { Estacion } from "./Estacion";
 import { Mapa } from "./Mapa";
-import { getStations } from "../utils/getStations";
+import { fetchStations } from "../utils/fetchStations";
 import { useState, useEffect } from "react";
 import { getFavorites } from "../utils/getFavorites";
 import { Box, CircularProgress, List } from "@mui/material";
@@ -14,7 +14,7 @@ export const Config = ({ usuario }) => {
 	const [selected, setSelected] = useState();
 
 	useEffect(() => {
-		getStations(setStations, setLoading);
+		fetchStations(setStations, setLoading);
 		getFavorites(usuario.uid, setFavorites);
 	}, []);
 

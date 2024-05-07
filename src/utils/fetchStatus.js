@@ -1,4 +1,4 @@
-export const getStatus = async (setStatus, setLoading) => {
+export const fetchStatus = async (setStatus, setLoading) => {
 	const url = "stationStatus?";
 	try {
 		const response = await fetch(

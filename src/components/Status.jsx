@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getStations } from "../utils/getStations";
-import { getStatus } from "../utils/getStatus";
+import { fetchStations } from "../utils/fetchStations";
+import { fetchStatus } from "../utils/fetchStatus";
 import { getFavorites } from "../utils/getFavorites";
 import { Tarjeta } from "./Tarjeta";
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 export const Status = ({ usuario }) => {
 	const [stations, setStations] = useState([]);
@@ -13,8 +13,8 @@ export const Status = ({ usuario }) => {
 	const [isLoading2, setLoading2] = useState(true);
 
 	useEffect(() => {
-		getStations(setStations, setLoading1);
-		getStatus(setStatus, setLoading2);
+		fetchStations(setStations, setLoading1);
+		fetchStatus(setStatus, setLoading2);
 		getFavorites(usuario.uid, setFavorites);
 		let timer = setInterval(() => {
 			getStatus(setStatus, setLoading2);

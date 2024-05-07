@@ -1,4 +1,4 @@
-export const getStations = async (setStations, setLoading) => {
+export const fetchStations = async (setStations, setLoading) => {
 	const url = "stationInformation?";
 	try {
 		const response = await fetch(
