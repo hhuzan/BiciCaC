@@ -4,7 +4,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems, secondaryListItems } from "../components/listItems";
+import { MainListItems } from "../components/listItems";
 import { Status } from "../components/Status";
 import { Config } from "../components/Config";
 
@@ -105,7 +105,7 @@ export const Dashboard = ({ usuario, pagina }) => {
 				</Toolbar>
 				<Divider />
 				<List component="nav">
-					{mainListItems}
+					<MainListItems />
 					{/* <Divider sx={{ my: 1 }} /> */}
 					{/* {secondaryListItems} */}
 				</List>
