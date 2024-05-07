@@ -34,7 +34,7 @@ const manejoErrores = (errorCode,errorDescription) => {
             descripcionError = "La hora de creación debe ser una string de fecha en formato UTC válida.";
             break;
         case "auth/invalid-credential":
-            descripcionError = "La credencial que se usa para autenticar los SDK de Admin no se puede emplear a fin de realizar la acción deseada. Algunos métodos de autenticación, como createCustomToken() y verifyIdToken(), requieren que los SDK se inicialicen con una credencial de certificado en lugar de un token de actualización o una credencial predeterminada de la aplicación. Consulta Inicializa el SDK para ver documentación sobre cómo autenticar el SDK de Admin con una credencial de certificado.";
+            descripcionError = "Usuario o contraseña inválida.";
             break;
         case "auth/invalid-disabled-field":
             descripcionError = "El valor que se proporcionó para la propiedad del usuario disabled no es válido. Debe ser un booleano.";

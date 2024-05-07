@@ -19,6 +19,24 @@ const theme = createTheme({
 
 const auth = getAuth(appFirebase);
 
+const MyRoutes = ( { isLogin,usuario } ) => {
+	return isLogin ? (
+		<Routes>
+			<Route path="/" element={<Dashboard pagina="Status" usuario={usuario} />} />
+			<Route path="/config" element={<Dashboard pagina="Config" usuario={usuario} />} />
+			<Route path="/change-password" element={<ChangePassword usuario={usuario} />} />
+			<Route path="/signUp" element={<Dashboard pagina="Status" usuario={usuario} />} />
+			<Route path="*" element={<p>Path not resolved</p>} />
+		</Routes>
+	) : (
+		<Routes>
+			<Route path="/signUp" element={<SignUp />} />
+			<Route path="/forgot-password" element={<ForgotPassword />} />
+			<Route path="*" element={<SignIn />} />
+		</Routes>
+	);
+};
+
 const App = () => {
 	const [usuario, setUsuario] = useState(null);
 
@@ -26,6 +44,16 @@ const App = () => {
 		setUsuario(usuarioFirebase);
 	});
 
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<BrowserRouter>
+				<MyRoutes isLogin = { Boolean(usuario) } usuario = { usuario } />
+			</BrowserRouter>
+		</ThemeProvider>
+	);
+
+/*
 	const MyRoutes = () => {
 		return usuario ? (
 			<Routes>
@@ -52,6 +80,7 @@ const App = () => {
 			</BrowserRouter>
 		</ThemeProvider>
 	);
+*/
 };
 
 export default App;
