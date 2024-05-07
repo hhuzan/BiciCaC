@@ -7,16 +7,8 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Dashboard } from "./pages/Dashboard";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { MUIWrapper } from "./components/MUIWrapper";
 import CssBaseline from "@mui/material/CssBaseline";
-
-// const darkMode = true;
-// const theme = createTheme({
-// 	palette: {
-// 		mode: darkMode ? "dark" : "light",
-// 	},
-// });
 
 const auth = getAuth(appFirebase);
 
