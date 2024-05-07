@@ -32,7 +32,7 @@ export const MainListItems = () => {
 					<PasswordIcon />
 				</ListItemIcon>
 				<ListItemText primary="Change Pass." />
-			</ListItemButton>{" "}
+			</ListItemButton>
 			<ListItemButton onClick={() => signOut(getAuth(appFirebase))}>
 				<ListItemIcon>
 					<LogoutIcon />
