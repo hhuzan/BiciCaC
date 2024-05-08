@@ -30,14 +30,14 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 	});
 
 	let color_bicis;
-	if (num_bikes_available < 1) color_bicis = "red";
-	else if (num_bikes_available < 4) color_bicis = "yellow";
-	else color_bicis = "green";
+	if (num_bikes_available < 1) color_bicis = "error";
+	else if (num_bikes_available < 4) color_bicis = "warning";
+	else color_bicis = "success";
 	let color_anclaje;
 
-	if (num_docks_available < 1) color_anclaje = "red";
-	else if (num_docks_available < 4) color_anclaje = "yellow";
-	else color_anclaje = "green";
+	if (num_docks_available < 1) color_anclaje = "error";
+	else if (num_docks_available < 4) color_anclaje = "warnig";
+	else color_anclaje = "success";
 
 	return (
 		<Card variant="outlined" sx={{ maxWidth: 302 }}>
@@ -55,18 +55,12 @@ export const Tarjeta = ({ favorite, stations, status }) => {
 				subheaderTypographyProps={{ noWrap: true }}
 			/>
 			<CardContent>
-				<Typography
-					color={color_bicis}
-					sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}
-				>
-					<PedalBikeIcon />
+				<Typography sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}>
+					<PedalBikeIcon color={color_bicis} />
 					{num_bikes_available}
 				</Typography>
-				<Typography
-					color={color_anclaje}
-					sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}
-				>
-					<DoorSlidingIcon />
+				<Typography sx={{ display: "flex", flexFlow: "row", justifyContent: "start", alignItems: "center", gap: "24px" }}>
+					<DoorSlidingIcon color={color_anclaje} />
 					{num_docks_available + "/" + total_anclajes}
 				</Typography>
 			</CardContent>
