@@ -11,7 +11,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 const auth = getAuth(appFirebase);
 
 export const ChangePassword = ({ usuario }) => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const [successMessage, setSuccessMessage] = useState(false);
 
 	const handleSubmit = async (event) => {
@@ -50,7 +50,7 @@ export const ChangePassword = ({ usuario }) => {
 			>
 				<ThumbUpIcon fontSize="large" color="success" />
 				<Typography component="h1" variant="h5">
-					{"    Su Contraseña ha cambiado con éxito!!!"}
+					{"    Su Contraseña Ha Cambiado Con Exito!!!"}
 				</Typography>
 				{/* <Button onClick={() => navigate("/")}>Ir a la página de inicio de sesión</Button> */}
 			</Box>
