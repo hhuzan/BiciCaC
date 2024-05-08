@@ -12,15 +12,18 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
 import manejoErrores from "../utils/manejoErrores";
 import validarCorreoElectronico from "../utils/validarCorreoElectronico";
 
+
 const auth = getAuth(appFirebase);
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -100,12 +103,12 @@ export const SignIn = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="forgot-password" variant="body2">
+              <Link onClick={() => navigate("/forgot-password")} variant="body2">
                 ¿Olvido la contraseña?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="SignUp" variant="body2">
+              <Link onClick={() => navigate("/SignUp")} variant="body2">
                 ¿No tiene cuenta? Registrese
               </Link>
             </Grid>

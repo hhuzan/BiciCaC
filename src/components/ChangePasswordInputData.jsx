@@ -1,5 +1,5 @@
-import React from "react";
-import { 
+import React, { useState } from "react";
+import {
   Avatar,
   Button,
   TextField,
@@ -10,46 +10,42 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Copyright } from "../components/CopyRight";
 import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { Copyright } from "../components/CopyRight";
+import { getAuth, updatePassword } from "firebase/auth";
 import manejoErrores from "../utils/manejoErrores";
-import validarCorreoElectronico from "../utils/validarCorreoElectronico";
-
 
 const auth = getAuth(appFirebase);
 
-export const SignUp = () => {
-  const navigate = useNavigate();
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
 
-    if (!validarCorreoElectronico(data.get("email"))) {
-      alert("No es una dirreción de correo válida.");
-      return;
-    }
+  if (data.get("password") !== data.get("passwordConfirm")) {
+    alert("La contraseña no es igual.");
+    return;
+  }
 
-    if (data.get("password").length < 8) {
-      alert(
-        "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
-      );
-      return;
-    }
+  if (data.get("password").length < 8) {
+    alert(
+      "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
+    );
+    return;
+  }
 
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        data.get("email"),
-        data.get("password")
-      );
-    } catch (error) {
-      const descripcionError = manejoErrores(error.code, error.message);
-      alert(descripcionError);
-    }
-  };
+  try {
+    await updatePassword(auth.currentUser, data.get("password"));
+    setSuccessMessage(true);
+  } catch (error) {
+    const descripcionError = manejoErrores(error.code, error.message);
+    alert(descripcionError);
+  }
+};
 
+const ChangePasswordInputData = ({ usuario }) => {
+  const [successMessage, setSuccessMessage] = useState(false);
+    
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -64,29 +60,43 @@ export const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrate
+          Change Password
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                required
+                margin="normal"
                 fullWidth
                 id="email"
-                label="Correo electrónico"
                 name="email"
-                autoComplete="email"
+                label="Correo electrónico"
+                value={usuario.email}
+                disabled
+                variant="outlined"
+                InputProps={{ readOnly: true }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                margin="normal"
                 required
                 fullWidth
                 name="password"
                 label="Contraseña"
                 type="password"
                 id="password"
-                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="passwordConfirm"
+                label="Confirmar contraseña"
+                type="password"
+                id="passwordConfirm"
               />
             </Grid>
           </Grid>
@@ -95,13 +105,14 @@ export const SignUp = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            id="Button"
           >
-            Registrate
+            Solicitar
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link onClick={() => navigate("/")} variant="body2">
-                ¿Ya tiene una cuenta? Iniciar sesión
+                Volver a la página principal
               </Link>
             </Grid>
           </Grid>
@@ -111,3 +122,4 @@ export const SignUp = () => {
     </Container>
   );
 };
+export default ChangePasswordInputData;

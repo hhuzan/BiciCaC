@@ -87,7 +87,7 @@ export const ForgotPassword = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/SignIn" variant="body2">
+              <Link onClick={() => navigate("/")} variant="body2">
                 ¿Recordó la contraseña? Iniciar sesión
               </Link>
             </Grid>
