@@ -5,12 +5,11 @@ import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { MainListItems } from "../components/listItems";
-import { Status } from "../components/Status";
-import { Config } from "../components/Config";
 import { Copyright } from "../components/CopyRight";
 import { MUIWrapperContext } from "../components/MUIWrapper";
+import { Outlet } from "react-router-dom";
 
-export const Dashboard = ({ usuario, pagina }) => {
+export const Dashboard = ({ usuario }) => {
 	const theme = useTheme();
 	const muiUtils = React.useContext(MUIWrapperContext);
 	const drawerWidth = 240;
@@ -81,9 +80,6 @@ export const Dashboard = ({ usuario, pagina }) => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography component="h1" variant="h4" color="inherit" noWrap sx={{ flexGrow: 3 }}>
-						{pagina}
-					</Typography>
 					<Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
 						{usuario.email}
 					</Typography>
@@ -122,8 +118,7 @@ export const Dashboard = ({ usuario, pagina }) => {
 			>
 				<Toolbar />
 				<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-					{pagina == "Status" && <Status usuario={usuario} />}
-					{pagina == "Config" && <Config usuario={usuario} />}
+					<Outlet />
 					<Copyright sx={{ pt: 4 }} />
 				</Container>
 			</Box>
