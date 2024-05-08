@@ -8,26 +8,26 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PasswordIcon from "@mui/icons-material/Password";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const MainListItems = () => {
 	const navigate = useNavigate();
-
+	let location = useLocation();
 	return (
 		<>
-			<ListItemButton onClick={() => navigate("/")}>
+			<ListItemButton selected={location.pathname === "/"} onClick={() => navigate("/")}>
 				<ListItemIcon>
 					<DashboardIcon />
 				</ListItemIcon>
 				<ListItemText primary="Status" />
 			</ListItemButton>
-			<ListItemButton onClick={() => navigate("/config")}>
+			<ListItemButton selected={location.pathname === "/config"} onClick={() => navigate("/config")}>
 				<ListItemIcon>
 					<SettingsIcon />
 				</ListItemIcon>
 				<ListItemText primary="Config" />
 			</ListItemButton>
-			<ListItemButton onClick={() => navigate("/change-password")}>
+			<ListItemButton selected={location.pathname === "/change-password"} onClick={() => navigate("/change-password")}>
 				<ListItemIcon>
 					<PasswordIcon />
 				</ListItemIcon>
