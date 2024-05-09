@@ -17,7 +17,7 @@ const App = () => {
 			<CssBaseline />
 			<AutContext.Provider value={autenticador}>
 				<BrowserRouter>
-					<MyRoutes isLoggedIn={isLoggedIn} autenticador={autenticador} />
+					<MyRoutes isLoggedIn={isLoggedIn} />
 				</BrowserRouter>
 			</AutContext.Provider>
 		</MUIWrapper>
