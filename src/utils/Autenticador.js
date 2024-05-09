@@ -1,4 +1,3 @@
-import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import manejoErrores from "./manejoErrores";
 import { appFirebase } from "./conexionAPIFirebase";
@@ -36,12 +35,12 @@ class Autenticador {
 	}
 
 	get uid() {
-		//esto podría dar error
+		//esto podría dar error?
 		return this.auth.currentUser.uid;
 	}
 
 	get email() {
-		//esto podría dar error
+		//esto podría dar error?
 		return this.auth.currentUser.email;
 	}
 }
