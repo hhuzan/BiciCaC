@@ -3,7 +3,6 @@ import { Avatar, Button, TextField, Grid, Box, Typography, Container, FormContro
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { Copyright } from "../components/CopyRight";
-import manejoErrores from "../utils/manejoErrores";
 import validarCorreoElectronico from "../utils/validarCorreoElectronico";
 
 export const SignIn = ({ autenticador }) => {
@@ -22,12 +21,7 @@ export const SignIn = ({ autenticador }) => {
 			return;
 		}
 
-		try {
-			await autenticador.login(data.get("email"), data.get("password"));
-		} catch (error) {
-			const descripcionError = manejoErrores(error.code, error.message);
-			alert(descripcionError);
-		}
+		await autenticador.login(data.get("email"), data.get("password"));
 	};
 
 	return (
