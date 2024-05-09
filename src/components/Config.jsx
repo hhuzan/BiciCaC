@@ -1,11 +1,13 @@
 import { Estacion } from "./Estacion";
 import { Mapa } from "./Mapa";
 import { fetchStations } from "../utils/fetchStations";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getFavorites } from "../utils/getFavorites";
 import { Box, CircularProgress, List } from "@mui/material";
+import AutContext from "../utils/AutContex";
 
-export const Config = ({ uid }) => {
+export const Config = () => {
+	const autenticador = useContext(AutContext);
 	const [stations, setStations] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [lat, setLat] = useState();
@@ -15,7 +17,7 @@ export const Config = ({ uid }) => {
 
 	useEffect(() => {
 		fetchStations(setStations, setLoading);
-		getFavorites(uid, setFavorites);
+		getFavorites(autenticador.uid, setFavorites);
 	}, []);
 
 	useEffect(() => {
@@ -38,7 +40,6 @@ export const Config = ({ uid }) => {
 						<Estacion
 							key={station.station_id}
 							station={station}
-							uid={uid}
 							favorites={favorites}
 							setLat={setLat}
 							setLon={setLon}

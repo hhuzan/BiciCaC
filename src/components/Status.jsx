@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchStations } from "../utils/fetchStations";
 import { fetchStatus } from "../utils/fetchStatus";
 import { getFavorites } from "../utils/getFavorites";
 import { Tarjeta } from "./Tarjeta";
 import { Box, CircularProgress } from "@mui/material";
+import AutContext from "../utils/AutContex";
 
-export const Status = ({ uid }) => {
+export const Status = () => {
+	const autenticador = useContext(AutContext);
 	const [stations, setStations] = useState([]);
 	const [status, setStatus] = useState([]);
 	const [favorites, setFavorites] = useState([]);
@@ -15,7 +17,7 @@ export const Status = ({ uid }) => {
 	useEffect(() => {
 		fetchStations(setStations, setLoading1);
 		fetchStatus(setStatus, setLoading2);
-		getFavorites(uid, setFavorites);
+		getFavorites(autenticador.uid, setFavorites);
 		let timer = setInterval(() => {
 			fetchStatus(setStatus, setLoading2);
 		}, 20000);

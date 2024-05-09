@@ -4,7 +4,7 @@ import { MUIWrapper } from "./components/MUIWrapper";
 import CssBaseline from "@mui/material/CssBaseline";
 import MyRoutes from "./router/MyRouters";
 import Autenticador from "./utils/Autenticador";
-
+import AutContext from "./utils/AutContex";
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState();
 	const autenticador = new Autenticador(setIsLoggedIn);
@@ -15,9 +15,11 @@ const App = () => {
 	return (
 		<MUIWrapper>
 			<CssBaseline />
-			<BrowserRouter>
-				<MyRoutes isLoggedIn={isLoggedIn} autenticador={autenticador} />
-			</BrowserRouter>
+			<AutContext.Provider value={autenticador}>
+				<BrowserRouter>
+					<MyRoutes isLoggedIn={isLoggedIn} autenticador={autenticador} />
+				</BrowserRouter>
+			</AutContext.Provider>
 		</MUIWrapper>
 	);
 };

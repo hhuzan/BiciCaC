@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import AutContext from "../utils/AutContex";
 
-export const ChangePassword = ({ autenticador }) => {
+export const ChangePassword = () => {
+	const autenticador = useContext(AutContext);
 	const [success, setSuccess] = useState(false);
 
 	const handleSubmit = async (event) => {

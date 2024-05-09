@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Button, TextField, Grid, Box, Typography, Container, FormControlLabel, Checkbox, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { Copyright } from "../components/CopyRight";
 import validarCorreoElectronico from "../utils/validarCorreoElectronico";
+import AutContext from "../utils/AutContex";
 
-export const SignIn = ({ autenticador }) => {
+export const SignIn = () => {
 	const navigate = useNavigate();
+	const autenticador = useContext(AutContext);
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);

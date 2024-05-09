@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography, Container, IconButton, Toolbar, List, Divider, styled, Switch, useTheme } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -8,8 +8,10 @@ import { MainListItems } from "../components/listItems";
 import { Copyright } from "../components/CopyRight";
 import { MUIWrapperContext } from "../components/MUIWrapper";
 import { Outlet } from "react-router-dom";
+import AutContext from "../utils/AutContex";
 
-export const Dashboard = ({ autenticador }) => {
+export const Dashboard = () => {
+	const autenticador = useContext(AutContext);
 	const theme = useTheme();
 	const muiUtils = React.useContext(MUIWrapperContext);
 	const drawerWidth = 240;

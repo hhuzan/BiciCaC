@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ListItem, ListItemText, ListItemButton, ListItemIcon, Checkbox, Divider } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import { putFavorites } from "../utils/putFavorites";
+import AutContext from "../utils/AutContex";
 
 export const Estacion = ({ station, uid, favorites, setLat, setLon, selected, setSelected }) => {
 	const [favorite, setFavorite] = useState(favorites.includes(station.station_id));
+	const autenticador = useContext(AutContext);
 
 	useEffect(() => {
 		if (favorites.length != 0) {
@@ -25,7 +27,7 @@ export const Estacion = ({ station, uid, favorites, setLat, setLon, selected, se
 		}
 		const doc = {};
 		doc["estaciones"] = favorites;
-		putFavorites(uid, doc);
+		putFavorites(autenticador.uid, doc);
 		setFavorite(!favorite);
 	};
 
