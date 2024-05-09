@@ -8,6 +8,9 @@ import Autenticador from "./utils/Autenticador";
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState();
 	const autenticador = new Autenticador(setIsLoggedIn);
+	// Se crea el autenticador con un setter del useState para
+	// que pueda cambiar el estada y eso dispara un render.
+	// Cuando se renderiza MyRoutes es que CAMBIAN las rutas.
 
 	return (
 		<MUIWrapper>

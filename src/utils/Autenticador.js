@@ -6,10 +6,10 @@ class Autenticador {
 	constructor(setIsLoggedIn) {
 		this.appFirebase = appFirebase;
 		this.auth = getAuth(this.appFirebase);
-		this.setIsLoggedIn = setIsLoggedIn;
+		this.setIsLoggedIn = setIsLoggedIn; // SETTER del useState recibido
 		this.observador = onAuthStateChanged(this.auth, (usuarioFirebase) => {
 			setIsLoggedIn(!!usuarioFirebase);
-		});
+		}); //guarda el OBSERVADOR como un atributo
 	}
 
 	async login(email, password) {
