@@ -3,7 +3,7 @@ import { ListItem, ListItemText, ListItemButton, ListItemIcon, Checkbox, Divider
 import PlaceIcon from "@mui/icons-material/Place";
 import { putFavorites } from "../utils/putFavorites";
 
-export const Estacion = ({ station, usuario, favorites, setLat, setLon, selected, setSelected }) => {
+export const Estacion = ({ station, uid, favorites, setLat, setLon, selected, setSelected }) => {
 	const [favorite, setFavorite] = useState(favorites.includes(station.station_id));
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ export const Estacion = ({ station, usuario, favorites, setLat, setLon, selected
 		}
 		const doc = {};
 		doc["estaciones"] = favorites;
-		putFavorites(usuario.uid, doc);
+		putFavorites(uid, doc);
 		setFavorite(!favorite);
 	};
 

@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { appFirebase } from "../utils/conexionAPIFirebase";
-import { getAuth, updatePassword } from "firebase/auth";
-import manejoErrores from "../utils/manejoErrores";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
-const auth = getAuth(appFirebase);
-
-export const ChangePassword = ({ usuario }) => {
-	const [successMessage, setSuccessMessage] = useState(false);
+export const ChangePassword = ({ autenticador }) => {
+	const [success, setSuccess] = useState(false);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -26,15 +21,14 @@ export const ChangePassword = ({ usuario }) => {
 		}
 
 		try {
-			await updatePassword(auth.currentUser, data.get("password"));
-			setSuccessMessage(true);
+			await autenticador.changePassword(data.get("password"));
+			setSuccess(true);
 		} catch (error) {
-			const descripcionError = manejoErrores(error.code, error.message);
-			alert(descripcionError);
+			alert(error);
 		}
 	};
 
-	return successMessage ? (
+	return success ? (
 		<Container>
 			<Box
 				sx={{
@@ -76,7 +70,7 @@ export const ChangePassword = ({ usuario }) => {
 								id="email"
 								name="email"
 								label="Correo electrónico"
-								value={usuario.email}
+								value={autenticador.email}
 								disabled
 								variant="outlined"
 								InputProps={{ readOnly: true }}

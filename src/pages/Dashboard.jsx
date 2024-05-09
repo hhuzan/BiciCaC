@@ -9,7 +9,7 @@ import { Copyright } from "../components/CopyRight";
 import { MUIWrapperContext } from "../components/MUIWrapper";
 import { Outlet } from "react-router-dom";
 
-export const Dashboard = ({ usuario }) => {
+export const Dashboard = ({ autenticador }) => {
 	const theme = useTheme();
 	const muiUtils = React.useContext(MUIWrapperContext);
 	const drawerWidth = 240;
@@ -81,7 +81,7 @@ export const Dashboard = ({ usuario }) => {
 						<MenuIcon />
 					</IconButton>
 					<Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-						{usuario.email}
+						{autenticador.email}
 					</Typography>
 					<Switch checked={theme.palette.mode === "dark"} onChange={muiUtils.toggleColorMode} />
 				</Toolbar>
@@ -101,7 +101,7 @@ export const Dashboard = ({ usuario }) => {
 				</Toolbar>
 				<Divider />
 				<List component="nav">
-					<MainListItems />
+					<MainListItems autenticador={autenticador} />
 				</List>
 			</Drawer>
 			<Box

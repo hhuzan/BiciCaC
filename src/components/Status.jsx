@@ -5,7 +5,7 @@ import { getFavorites } from "../utils/getFavorites";
 import { Tarjeta } from "./Tarjeta";
 import { Box, CircularProgress } from "@mui/material";
 
-export const Status = ({ usuario }) => {
+export const Status = ({ uid }) => {
 	const [stations, setStations] = useState([]);
 	const [status, setStatus] = useState([]);
 	const [favorites, setFavorites] = useState([]);
@@ -15,17 +15,11 @@ export const Status = ({ usuario }) => {
 	useEffect(() => {
 		fetchStations(setStations, setLoading1);
 		fetchStatus(setStatus, setLoading2);
-		getFavorites(usuario.uid, setFavorites);
+		getFavorites(uid, setFavorites);
 		let timer = setInterval(() => {
 			fetchStatus(setStatus, setLoading2);
 		}, 20000);
 	}, []);
-
-	useEffect(() => {
-		if (stations.length != 0 && status.length != 0) {
-			// Armar diccionarios aca
-		}
-	}, [stations, status]);
 
 	return isLoading1 || isLoading2 ? (
 		<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

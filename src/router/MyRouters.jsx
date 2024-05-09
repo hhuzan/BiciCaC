@@ -8,22 +8,22 @@ import { Status } from "../components/Status";
 import { Config } from "../components/Config";
 import { route } from "./route.jsx";
 
-const MyRoutes = ({ isLogin, usuario }) => {
-	return isLogin ? (
+const MyRoutes = ({ isLoggedIn, autenticador }) => {
+	return isLoggedIn ? (
 		<Routes>
-			<Route path={route.default} element={<Dashboard usuario={usuario} />}>
-				<Route index element={<Status usuario={usuario} />} />
-				<Route path={route.config} element={<Config usuario={usuario} />} />
-				<Route path={route.changepassword} element={<ChangePassword usuario={usuario} />} />
+			<Route path={route.default} element={<Dashboard autenticador={autenticador} />}>
+				<Route index element={<Status uid={autenticador.uid} />} />
+				<Route path={route.config} element={<Config uid={autenticador.uid} />} />
+				<Route path={route.changepassword} element={<ChangePassword autenticador={autenticador} />} />
+				<Route path={route.register} element={<Status autenticador={autenticador} />} />
 			</Route>
-			<Route path={route.register} element={<Dashboard pagina="Status" usuario={usuario} />} />
 			<Route path="*" element={<p>Path not resolved</p>} />
 		</Routes>
 	) : (
 		<Routes>
-			<Route path={route.register} element={<SignUp />} />
+			<Route path={route.register} element={<SignUp autenticador={autenticador} />} />
 			<Route path={route.forgotpassword} element={<ForgotPassword />} />
-			<Route path="*" element={<SignIn />} />
+			<Route path="*" element={<SignIn autenticador={autenticador} />} />
 		</Routes>
 	);
 };

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { getFavorites } from "../utils/getFavorites";
 import { Box, CircularProgress, List } from "@mui/material";
 
-export const Config = ({ usuario }) => {
+export const Config = ({ uid }) => {
 	const [stations, setStations] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [lat, setLat] = useState();
@@ -15,7 +15,7 @@ export const Config = ({ usuario }) => {
 
 	useEffect(() => {
 		fetchStations(setStations, setLoading);
-		getFavorites(usuario.uid, setFavorites);
+		getFavorites(uid, setFavorites);
 	}, []);
 
 	useEffect(() => {
@@ -38,7 +38,7 @@ export const Config = ({ usuario }) => {
 						<Estacion
 							key={station.station_id}
 							station={station}
-							usuario={usuario}
+							uid={uid}
 							favorites={favorites}
 							setLat={setLat}
 							setLon={setLon}

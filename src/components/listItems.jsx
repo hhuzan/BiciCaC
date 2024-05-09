@@ -6,11 +6,9 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PasswordIcon from "@mui/icons-material/Password";
-import { appFirebase } from "../utils/conexionAPIFirebase";
-import { getAuth, signOut } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export const MainListItems = () => {
+export const MainListItems = ({ autenticador }) => {
 	const navigate = useNavigate();
 	let location = useLocation();
 	return (
@@ -33,7 +31,7 @@ export const MainListItems = () => {
 				</ListItemIcon>
 				<ListItemText primary="Change Pass." />
 			</ListItemButton>
-			<ListItemButton onClick={() => signOut(getAuth(appFirebase))}>
+			<ListItemButton onClick={() => autenticador.signOut()}>
 				<ListItemIcon>
 					<LogoutIcon />
 				</ListItemIcon>
