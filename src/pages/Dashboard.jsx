@@ -103,7 +103,7 @@ export const Dashboard = () => {
 				</Toolbar>
 				<Divider />
 				<List component="nav">
-					<MainListItems autenticador={autenticador} />
+					<MainListItems />
 				</List>
 			</Drawer>
 			<Box

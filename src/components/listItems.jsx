@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -7,8 +7,10 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PasswordIcon from "@mui/icons-material/Password";
 import { useNavigate, useLocation } from "react-router-dom";
+import AutContext from "../utils/AutContex";
 
-export const MainListItems = ({ autenticador }) => {
+export const MainListItems = () => {
+	const autenticador = useContext(AutContext);
 	const navigate = useNavigate();
 	let location = useLocation();
 	return (
