@@ -16,7 +16,6 @@ const MyRoutes = ({ isLogin, usuario }) => {
 				<Route path={route.config} element={<Config usuario={usuario} />} />
 				<Route path={route.changepassword} element={<ChangePassword usuario={usuario} />} />
 			</Route>
-			{/* <Route path={route.changepassword} element={<ChangePassword usuario={usuario} />} /> */}
 			<Route path={route.register} element={<Dashboard pagina="Status" usuario={usuario} />} />
 			<Route path="*" element={<p>Path not resolved</p>} />
 		</Routes>

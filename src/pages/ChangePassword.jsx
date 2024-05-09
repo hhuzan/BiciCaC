@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useNavigate } from "react-router-dom";
 import { appFirebase } from "../utils/conexionAPIFirebase";
 import { getAuth, updatePassword } from "firebase/auth";
-import { Copyright } from "../components/CopyRight";
 import manejoErrores from "../utils/manejoErrores";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const auth = getAuth(appFirebase);
 
 export const ChangePassword = ({ usuario }) => {
-	// const navigate = useNavigate();
 	const [successMessage, setSuccessMessage] = useState(false);
 
 	const handleSubmit = async (event) => {
@@ -52,7 +49,6 @@ export const ChangePassword = ({ usuario }) => {
 				<Typography component="h1" variant="h5">
 					{"    Su Contraseña Ha Cambiado Con Exito!!!"}
 				</Typography>
-				{/* <Button onClick={() => navigate("/")}>Ir a la página de inicio de sesión</Button> */}
 			</Box>
 		</Container>
 	) : (
@@ -114,16 +110,8 @@ export const ChangePassword = ({ usuario }) => {
 					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 						Solicitar
 					</Button>
-					{/* <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link onClick={() => navigate("/")} variant="body2">
-                Volver a la página principal
-              </Link>
-            </Grid>
-          </Grid> */}
 				</Box>
 			</Box>
-			{/* <Copyright sx={{ mt: 5 }} /> */}
 		</Container>
 	);
 };
