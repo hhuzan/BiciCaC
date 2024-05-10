@@ -22,31 +22,46 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const autenticador = useContext(AutContext);
 
-  const [openDialog, setOpenDialog] = useState(false);
-  const [dialogContent, setDialogContent] = useState("");
-  const [dialogActionLabel, setDialogActionLabel] = useState("");
+  const [openDialogErrorEmail, setOpenDialogErrorEmail] = useState(false);
+  const [openDialogErrorPassword, setOpenDialogErrorPassword] = useState(false);
+  const [openDialogAutenticador, setOpenDialogAutenticador] = useState(false);
+  const [dialogContentAutenticador, setDialogContentAutenticador] = useState("");
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
+  const handleCloseDialogErrorEmail = () => {
+    setOpenDialogErrorEmail(false);
   };
+
+  const handleCloseDialogErrorPassword = () => {
+    setOpenDialogErrorPassword(false);
+  };
+
+  const handleCloseDialogAutenticador = () => {
+    setOpenDialogAutenticador(false);
+  };
+
+  const dialogErrorEmailActions = [
+    { label: "Reintentar", handler: handleCloseDialogErrorEmail },
+  ];
+
+  const dialogErrorPasswordActions = [
+    { label: "Reintentar", handler: handleCloseDialogErrorPassword },
+  ];
+
+  const dialogAutenticadorActions = [
+    { label: "Reintentar", handler: handleCloseDialogAutenticador },
+  ];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     if (!validarCorreoElectronico(data.get("email"))) {
-      setDialogContent("No es una dirección de correo válida.");
-      setDialogActionLabel("Reintentar");
-      setOpenDialog(true);
+      setOpenDialogErrorEmail(true);
       return;
     }
 
     if (data.get("password").length < 8) {
-      setDialogContent(
-        "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
-      );
-      setDialogActionLabel("Reintentar");
-      setOpenDialog(true);
+      setOpenDialogErrorPassword(true);
       return;
     }
 
@@ -55,11 +70,8 @@ export const SignIn = () => {
       data.get("password")
     );
 
-    setDialogContent(response);
-    if (response.estado != "OK") {
-        setDialogActionLabel("Reintentar");
-        setOpenDialog(true);
-    }
+    setDialogContentAutenticador(response);
+    setOpenDialogAutenticador(true);
   };
 
   return (
@@ -81,8 +93,8 @@ export const SignIn = () => {
           </Typography>
           <Box
             component="form"
-            noValidate
             onSubmit={handleSubmit}
+            noValidate
             sx={{ mt: 1 }}
           >
             <TextField
@@ -136,11 +148,27 @@ export const SignIn = () => {
       </Container>
 
       <AlertDialog
-        open={openDialog}
-        handleClose={handleCloseDialog}
-        title="Iniciar sesión"
-        content={dialogContent}
-        label={dialogActionLabel}
+        open={openDialogErrorEmail}
+        handleClose={handleCloseDialogErrorEmail}
+        title="Login Error"
+        content="No es una dirección de correo válida."
+        actions={dialogErrorEmailActions}
+      />
+
+      <AlertDialog
+        open={openDialogErrorPassword}
+        handleClose={handleCloseDialogErrorPassword}
+        title="Login Error"
+        content="El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
+        actions={dialogErrorPasswordActions}
+      />
+
+      <AlertDialog
+        open={openDialogAutenticador}
+        handleClose={handleCloseDialogAutenticador}
+        title="Login Error"
+        content={dialogContentAutenticador}
+        actions={dialogAutenticadorActions}
       />
     </>
   );

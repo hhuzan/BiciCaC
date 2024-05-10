@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, updatePassword } from "firebase/auth";
 import manejoErrores from "./manejoErrores";
 import { appFirebase } from "./conexionAPIFirebase";
 
@@ -13,22 +13,62 @@ class Autenticador {
 	}
 
 	async login(email, password) {
+		let response = "Inicializada";
 		try {
 			await signInWithEmailAndPassword(this.auth, email, password);
+			response = { estado: "OK", mensaje: "" };
 		} catch (error) {
-			const descripcionError = manejoErrores(error.code, error.message);
-			alert(descripcionError);
+			response = { estado: "ERROR", mensaje: manejoErrores(error.code, error.message) };
 		}
+
+		return response
 	}
 
 	async changePassword(password) {
+		let response = "Inicializada";
 		try {
 			await updatePassword(this.auth.currentUser, password);
+			response = { estado: "OK", mensaje: "Cambio exitosamente su contraseña" };
 		} catch (error) {
-			const descripcionError = manejoErrores(error.code, error.message);
-			throw descripcionError;
+			response = { estado: "ERROR", mensaje: manejoErrores(error.code, error.message) };
 		}
+	
+		return response
 	}
+
+    async passwordReset(
+        email
+    ) {
+		let response = "Inicializada";
+        try {            
+            await sendPasswordResetEmail(this.auth, email);
+			response = { estado: "OK", mensaje: "El correo electrónico ha sido enviado; ¡Revisa tu correo!" };
+		} catch (error) {
+			response = { estado: "ERROR", mensaje: manejoErrores(error.code, error.message) };
+		}
+
+		return response
+    };
+
+
+    async register(
+        email,
+        password
+    ) {
+		let response = "Inicializada";
+        try {
+            await createUserWithEmailAndPassword(
+                this.auth,
+                email,
+                password
+            );
+			response = { estado: "OK", mensaje: "Se creo exitosamente su usuario" };
+		} catch (error) {
+			response = { estado: "ERROR", mensaje: manejoErrores(error.code, error.message) };
+		}
+
+		return response
+    };
 
 	async signOut() {
 		this.auth.signOut();
