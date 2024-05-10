@@ -1,16 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  Avatar,
-  Button,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  FormControlLabel,
-  Checkbox,
-  Link,
-} from "@mui/material";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, FormControlLabel, Checkbox, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { Copyright } from "../components/CopyRight";
@@ -35,30 +24,25 @@ export const SignIn = () => {
     const data = new FormData(event.currentTarget);
 
     if (!validarCorreoElectronico(data.get("email"))) {
-      setDialogContent("No es una dirección de correo válida.");
+      setDialogContent("Dirección de Correo No Válida.");
       setDialogActionLabel("Reintentar");
       setOpenDialog(true);
       return;
     }
 
     if (data.get("password").length < 8) {
-      setDialogContent(
-        "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
-      );
+      setDialogContent("La Contraseña debe tener 8 o más Caracteres.");
       setDialogActionLabel("Reintentar");
       setOpenDialog(true);
       return;
     }
 
-    const response = await autenticador.login(
-      data.get("email"),
-      data.get("password")
-    );
-
-    setDialogContent(response);
-    if (response.estado != "OK") {
-        setDialogActionLabel("Reintentar");
-        setOpenDialog(true);
+    try {
+      await autenticador.login(data.get("email"), data.get("password"));
+    } catch (error) {
+      setDialogContent(error);
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
     }
   };
 
@@ -79,48 +63,16 @@ export const SignIn = () => {
           <Typography component="h1" variant="h5">
             Iniciar sesión
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Correo electrónico"
-              name="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Contraseña"
-              type="password"
-              id="password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Recordame"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField margin="normal" required fullWidth id="email" label="Correo electrónico" name="email" autoFocus />
+            <TextField margin="normal" required fullWidth name="password" label="Contraseña" type="password" id="password" />
+            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Recordame" />
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Iniciar sesión
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link
-                  onClick={() => navigate("/forgot-password")}
-                  variant="body2"
-                >
+                <Link onClick={() => navigate("/forgot-password")} variant="body2">
                   ¿Olvido la contraseña?
                 </Link>
               </Grid>

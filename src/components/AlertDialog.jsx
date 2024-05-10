@@ -22,7 +22,9 @@ export const AlertDialog = ({ open, handleClose, title, content, label }) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={handleClose} autoFocus>{label}</Button>
+        <Button onClick={handleClose} autoFocus>
+          {label}
+        </Button>
       </DialogActions>
     </Dialog>
   );
