@@ -1,52 +1,48 @@
-import React from "react";
-import { 
-  Avatar,
-  Button,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Link,
-} from "@mui/material";
+import React, { useContext, useState } from "react";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
-import { appFirebase } from "../utils/conexionAPIFirebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
-import manejoErrores from "../utils/manejoErrores";
 import validarCorreoElectronico from "../utils/validarCorreoElectronico";
-
-
-const auth = getAuth(appFirebase);
+import AutContext from "../utils/AutContex";
+import { AlertDialog } from "../components/AlertDialog";
 
 export const SignUp = () => {
   const navigate = useNavigate();
+  const autenticador = useContext(AutContext);
+
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogContent, setDialogContent] = useState("");
+  const [dialogActionLabel, setDialogActionLabel] = useState("");
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     if (!validarCorreoElectronico(data.get("email"))) {
-      alert("No es una dirreción de correo válida.");
+      setDialogContent("No es una dirección de correo válida.");
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
       return;
     }
 
     if (data.get("password").length < 8) {
-      alert(
-        "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
-      );
+      setDialogContent("El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres.");
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
       return;
     }
 
     try {
-      await createUserWithEmailAndPassword(
-        auth,
-        data.get("email"),
-        data.get("password")
-      );
+      await autenticador.register(data.get("email"), data.get("password"));
     } catch (error) {
-      const descripcionError = manejoErrores(error.code, error.message);
-      alert(descripcionError);
+      setDialogContent(response.mensaje);
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
     }
   };
 
@@ -69,33 +65,13 @@ export const SignUp = () => {
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Correo electrónico"
-                name="email"
-                autoComplete="email"
-              />
+              <TextField required fullWidth id="email" label="Correo electrónico" name="email" autoFocus />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-              />
+              <TextField required fullWidth name="password" label="Contraseña" type="password" id="password" />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Registrate
           </Button>
           <Grid container justifyContent="flex-end">
@@ -108,6 +84,13 @@ export const SignUp = () => {
         </Box>
       </Box>
       <Copyright sx={{ mt: 5 }} />
+      <AlertDialog
+        open={openDialog}
+        handleClose={handleCloseDialog}
+        title="Registrate"
+        content={dialogContent}
+        label={dialogActionLabel}
+      />{" "}
     </Container>
   );
 };

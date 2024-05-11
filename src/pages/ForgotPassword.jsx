@@ -1,53 +1,67 @@
-import React, { useState } from "react";
-import {
-  Avatar,
-  Button,
-  TextField,
-  Grid,
-  Box,
-  Typography,
-  Container,
-  Link,
-} from "@mui/material";
+import React, { useContext, useState } from "react";
+import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
-import { appFirebase } from "../utils/conexionAPIFirebase";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { Copyright } from "../components/CopyRight";
-import manejoErrores from "../utils/manejoErrores";
 import validarCorreoElectronico from "../utils/validarCorreoElectronico";
-
-const auth = getAuth(appFirebase);
+import AutContext from "../utils/AutContex";
+import { AlertDialog } from "../components/AlertDialog";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
-  const [emailMessage, setEmailMessage] = useState(false);
+  const autenticador = useContext(AutContext);
+  const [success, setSuccess] = useState(false);
+
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogContent, setDialogContent] = useState("");
+  const [dialogActionLabel, setDialogActionLabel] = useState("");
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     if (!validarCorreoElectronico(data.get("email"))) {
-      alert("No es una direción de correo válida.");
+      setDialogContent("No es una dirección de correo válida.");
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
       return;
     }
 
     try {
-      await sendPasswordResetEmail(auth, data.get("email"));
-      setEmailMessage(true);
+      await autenticador.passwordReset(data.get("email"));
+      setSuccess(true);
     } catch (error) {
-      const descripcionError = manejoErrores(error.code, error.message);
-      alert(descripcionError);
+      setDialogContent(error);
+      setDialogActionLabel("Reintentar");
+      setOpenDialog(true);
     }
   };
 
-  return emailMessage ? (
-    <>
-      <h3>El correo electrónico ha sido enviado; ¡Revisa tu correo!</h3>
-      <button onClick={() => navigate("/")}>
-        Ir a la página de inicio de sesión
-      </button>
-    </>
+  return success ? (
+    <Container>
+      <Box
+        sx={{
+          padding: "120px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        <ThumbUpIcon fontSize="large" color="success" />
+        <Typography component="h1" variant="h5">
+          {"    El correo electrónico ha sido enviado; ¡Revisa tu correo!"}
+        </Typography>
+        <Button onClick={() => navigate("/")} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Ir a la página de inicio de sesión
+        </Button>
+      </Box>
+    </Container>
   ) : (
     <Container component="main" maxWidth="xs">
       <Box
@@ -67,22 +81,10 @@ export const ForgotPassword = () => {
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Correo electrónico"
-                name="email"
-                autoComplete="email"
-              />
+              <TextField required fullWidth id="email" label="Correo electrónico" name="email" autoComplete="email" />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Solicitar
           </Button>
           <Grid container justifyContent="flex-end">
@@ -95,6 +97,13 @@ export const ForgotPassword = () => {
         </Box>
       </Box>
       <Copyright sx={{ mt: 5 }} />
+      <AlertDialog
+        open={openDialog}
+        handleClose={handleCloseDialog}
+        title="Olvido su contraseña"
+        content={dialogContent}
+        label={dialogActionLabel}
+      />
     </Container>
   );
 };
