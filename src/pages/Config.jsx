@@ -1,5 +1,5 @@
-import { Estacion } from "./Estacion";
-import { Mapa } from "./Mapa";
+import { Estacion } from "../components/Estacion";
+import { Mapa } from "../components/Mapa";
 import { fetchStations } from "../utils/fetchStations";
 import { useState, useEffect, useContext } from "react";
 import { getFavorites } from "../utils/getFavorites";

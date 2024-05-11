@@ -4,8 +4,8 @@ import { ForgotPassword } from "../pages/ForgotPassword";
 import { SignIn } from "../pages/SignIn";
 import { SignUp } from "../pages/SignUp";
 import { Dashboard } from "../pages/Dashboard";
-import { Status } from "../components/Status";
-import { Config } from "../components/Config";
+import { Status } from "../pages/Status";
+import { Config } from "../pages/Config";
 import { route } from "./route.jsx";
 
 const MyRoutes = ({ isLoggedIn }) => {
