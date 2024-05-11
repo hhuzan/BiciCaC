@@ -1,5 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Avatar, Button, TextField, Grid, Box, Typography, Container } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import AutContext from "../utils/AutContex";
@@ -39,7 +47,7 @@ export const ChangePassword = () => {
       await autenticador.changePassword(data.get("password"));
       setSuccess(true);
     } catch (error) {
-      setDialogContent(response.mensaje);
+      setDialogContent(error);
       setDialogActionLabel("Reintentar");
       setOpenDialog(true);
     }
@@ -58,7 +66,7 @@ export const ChangePassword = () => {
       >
         <ThumbUpIcon fontSize="large" color="success" />
         <Typography component="h1" variant="h5">
-          {"    Su Contraseña Ha Cambiado Con Exito!!!"}
+          {"    Su contraseña ha cambiado con exito!!!"}
         </Typography>
       </Box>
     </Container>
@@ -118,7 +126,12 @@ export const ChangePassword = () => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
             Solicitar
           </Button>
         </Box>

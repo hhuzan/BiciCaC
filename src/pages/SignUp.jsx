@@ -1,5 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Avatar, Button, TextField, Grid, Box, Typography, Container, Link } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  Link,
+} from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useNavigate } from "react-router-dom";
 import { Copyright } from "../components/CopyRight";
@@ -31,16 +40,22 @@ export const SignUp = () => {
     }
 
     if (data.get("password").length < 8) {
-      setDialogContent("El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres.");
+      setDialogContent(
+        "El largo de la contraseña debe tener una longitud igual o mayor a 8 caracteres."
+      );
       setDialogActionLabel("Reintentar");
       setOpenDialog(true);
       return;
     }
 
     try {
-      await autenticador.register(data.get("email"), data.get("password"));
+      await await autenticador.register(
+        data.get("email"),
+        data.get("password")
+      );
+      navigate("/");
     } catch (error) {
-      setDialogContent(response.mensaje);
+      setDialogContent(error);
       setDialogActionLabel("Reintentar");
       setOpenDialog(true);
     }
@@ -65,13 +80,32 @@ export const SignUp = () => {
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField required fullWidth id="email" label="Correo electrónico" name="email" autoFocus />
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="Correo electrónico"
+                name="email"
+                autoFocus
+              />
             </Grid>
             <Grid item xs={12}>
-              <TextField required fullWidth name="password" label="Contraseña" type="password" id="password" />
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Contraseña"
+                type="password"
+                id="password"
+              />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
             Registrate
           </Button>
           <Grid container justifyContent="flex-end">
