@@ -17,7 +17,7 @@ Web Page para visualizar en tiempo real el estado de las de [Estaciones Ecobici]
 
 -   [React](https://react.dev/)
 -   [Firebase Authentication](https://firebase.google.com/docs/auth)
--   [Firebase Realtime Database](https://firebase.google.com/docs/database)
+-   [Firestore Database](https://firebase.google.com/docs/database)
 -   [React Router DOM](https://www.npmjs.com/package/react-router-dom)
 -   [MUI](https://mui.com/) UI Components
 -   [Google Maps](https://www.google.com/maps/)
@@ -34,7 +34,7 @@ Web Page para visualizar en tiempo real el estado de las de [Estaciones Ecobici]
 ## Implementación:
 
 -   Autenticación (Legistro, Login, Logout, Recupero de Clave) implementada con **Firebase Authentication**.
--   Listados de Estaciones Favoritas de cada Usuario almacenados en **Firebase Database**.
+-   Listados de Estaciones Favoritas de cada Usuario almacenados en **Firestore Database**.
 -   La pantalla principal combina los datos de las Estaciones Favoritas del usuaio(**Firebase**) y las de **descripciones** y **estados** de Estaciones **Ecobici** provistos por **APIs de la Ciudad**.
 -   Las ubicaciones se muestran mediante **Google Maps**.
 -   **UI** completamente realizada con componentes **MUI**.
