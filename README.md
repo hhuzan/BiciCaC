@@ -6,6 +6,15 @@
 
 Web Page para visualizar en tiempo real el estado de las de [Estaciones Ecobici](https://baecobici.com.ar/) **favoritas** del usuario.
 
+### Grupo 22:
+
+-   Gisela Aballay
+-   Fernando Jaleh
+-   Hugo Huzan
+-   Sergio Stekolschik
+
+---
+
 ### Instalacion "Local"
 
 -   Copiar el archivo `.env` a `env.local`
